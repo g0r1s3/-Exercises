@@ -1,0 +1,43 @@
+/* Bestehende Stile */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tab Controls zentriert */
+.tab-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+/* Formular hat eine feste Mindesthöhe */
+#form {
+    display: flex;
+    flex-direction: column;
+    min-height: 300px; /* Mindesthöhe, damit beide Formulare konsistent bleiben */
+    justify-content: flex-start; /* Abstände zwischen den Feldern minimieren */
+    gap: 0.5rem; /* Gleichmäßiger Abstand zwischen den Eingabefeldern */
+}
+
+/* Formular-Button bleibt unten */
+#form-button {
+    align-self: center;
+    margin-top: 1rem;
+}
+
+/* Aktiver Tab-Button Stil */
+
+
+.active {
+}
