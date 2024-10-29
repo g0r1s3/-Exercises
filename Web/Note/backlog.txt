@@ -1,0 +1,58 @@
+# Product Backlog für Notizprojekt
+
+TODO:
+1. Titel: AddButton für Notizen hinzufügen
+   Beschreibung: Implementiere einen Button, um neue Notizen hinzuzufügen.
+   Priorität: Hoch
+   Aufwandsschätzung: 2 Story Points
+   Status: Offen
+
+TODO:
+2. Titel: Bearbeitungsbildschirm für Notizen hinzufügen
+   - 2.1: Layout für Bearbeitungsbildschirm erstellen
+   - 2.2: Bearbeitungslogik implementieren (Inhalt bestehender Notizen ändern)
+   - 2.3: Speichern der Änderungen sicherstellen
+   Priorität: Hoch
+   Aufwandsschätzung: 4 Story Points
+   Status: Offen
+
+TEST:
+3. Titel: Funktion zur Zeitausgabe im richtigen Format
+   Beschreibung: Erstelle eine Funktion, die den aktuellen Zeitpunkt als formatierten String zurückgibt.
+   Priorität: Mittel
+   Aufwandsschätzung: 1 Story Point
+   Status: Funktion erstellt
+
+TODO:
+4. Titel: Implementierung der LocalStorage Funktionalität
+   - 4.1: Funktion zum Speichern einzelner Notizen im LocalStorage
+   - 4.2: Funktion zum Abrufen von Notizen beim Start der App
+   - 4.3: Fehlerbehandlung für LocalStorage (z. B. bei vollem Speicher)
+   Priorität: Hoch
+   Aufwandsschätzung: 5 Story Points
+   Status: Offen
+
+TODO:
+5. Titel: Styling an ToDo-App angleichen
+   Beschreibung: Passe das Styling der Notiz-App an das Layout der ToDo-App an.
+   Priorität: Mittel
+   Aufwandsschätzung: 2 Story Points
+   Status: Offen
+
+TODO:
+6. Titel: Softwaretests
+   - 6.1: Tests für AddButton-Funktion
+   - 6.2: Tests für Bearbeitungsfunktion
+   - 6.3: Tests für LocalStorage-Funktionalität
+   - 6.4: Usability-Check für das gesamte Layout
+   Priorität: Niedrig
+   Aufwandsschätzung: 4 Story Points
+   Status: Offen
+
+TODO:
+Optionale Funktionalität:
+- Suchfunktion für Notizen
+- Notizen-Kategorisierung/Tagging
+- Favoriten-Funktion
+- Archivieren und Löschen von Notizen
+- Dark/Light-Mode

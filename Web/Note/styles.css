@@ -1,0 +1,75 @@
+/* Grundlegende Stile für das gesamte Dokument */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fffaf0; /* Weiß-Gelb Hintergrund */
+    color: #4b371c; /* Dunkelbraun für Text */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background-color: #f4a460; /* Braun-Gelb */
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    color: #ffffff; /* Weißer Text */
+}
+
+/* Note Grid */
+
+main {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* Maximal 6 Spalten, gleiche Breite für alle */
+    grid-auto-rows: 200px; /* Höhe der Elemente, anpassbar */
+    gap: 10px; /* Abstand zwischen den Notizen */
+    height: 80vh;
+}
+
+/* Einzelnes Notizelement */
+
+div.note {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 1rem;
+    margin: 1rem;
+    max-height: 10rem;
+    min-height: 10rem;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    background-color: #ffebcd;
+    transition: background-color 0.2s;
+}
+
+div.note:hover {
+    background-color: #f4a460; /* Hintergrundfarbe bei Hover */
+    cursor: pointer;
+}
+
+/* Zentrierte Überschrift */
+div.note h3 {
+    text-align: center;
+    margin-bottom: .2rem;
+}
+
+/* Datum unten rechts */
+div.note p:last-child {
+    font-size: 0.8em;
+    color: gray;
+    text-align: right;
+    margin: 0;
+}
