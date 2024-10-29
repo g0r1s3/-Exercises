@@ -1,6 +1,6 @@
 # Product Backlog für Notizprojekt
 
-TODO:
+TEST:
 1. Titel: AddButton für Notizen hinzufügen
    Beschreibung: Implementiere einen Button, um neue Notizen hinzuzufügen.
    Priorität: Hoch
@@ -16,7 +16,7 @@ TODO:
    Aufwandsschätzung: 4 Story Points
    Status: Offen
 
-TEST:
+DONE:
 3. Titel: Funktion zur Zeitausgabe im richtigen Format
    Beschreibung: Erstelle eine Funktion, die den aktuellen Zeitpunkt als formatierten String zurückgibt.
    Priorität: Mittel
@@ -48,6 +48,10 @@ TODO:
    Priorität: Niedrig
    Aufwandsschätzung: 4 Story Points
    Status: Offen
+
+FIX:
+7. Titel: Blure Effekt
+    Der Blure-Effekt beim hinzufügen bzw. bearbeiten von Notizen ist defekt
 
 TODO:
 Optionale Funktionalität:

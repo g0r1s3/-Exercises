@@ -24,8 +24,18 @@
             <p>Dies ist der Text. Alles, was ich noch erledigen möchte. loreDies ist der Text. Alles, was ich noch erledigen möchte.Dies ist der Text.</p>
             <p>29.10.24 | 08:17</p>
         </div>
+        <!-- Hier werden dann neue Elemente eingefügt -->
     </main>
-    <footer>+</footer>
+    <footer id="addButton">+</footer>
+    <!-- AddNote Form -->
+    <section id="addNoteForm" class="hidden">
+        <form action="">
+            <input type="text" placeholder="Title" id="noteTitle">
+            <input type="text" placeholder="Content" id="noteContent">
+            <button type="button" id="cancelButton">Cancel</button>
+            <button type="button" id="addNoteButton">Add Note</button>
+        </form>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>
