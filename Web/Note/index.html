@@ -3,26 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <link rel="stylesheet" href="functional_styles.css">
     <title>Notizen</title>
 </head>
 <body>
     <header><h1>Notizen</h1></header>
-    <main>
+    <main id="noteList">
         <div class="note">
             <h3>Meine Notiz</h3>
             <p>Dies ist der Text. Alles, was ich noch erledigen möchte</p>
-            <p>29.10.24 | 07:57</p>
+            <div class="note-footer">
+                <span>29.10.24 | 08:17</span>
+                <span class="edit-note">Edit</span>
+                <span class="delete-note">Delete</span>
+            </div>
         </div>
         <div class="note">
             <h3>Meine zweite Notiz</h3>
             <p>Dies ist der Text. Alles, was ich noch erledigen möchte</p>
-            <p>29.10.24 | 08:17</p>
+            <div class="note-footer">
+                <span>29.10.24 | 08:17</span>
+                <span class="edit-note">Edit</span>
+                <span class="delete-note">Delete</span>
+            </div>
         </div>
         <div class="note">
-            <h3>Meine zweite Notiz</h3>
+            <h3>Meine dritte Notiz</h3>
             <p>Dies ist der Text. Alles, was ich noch erledigen möchte. loreDies ist der Text. Alles, was ich noch erledigen möchte.Dies ist der Text.</p>
-            <p>29.10.24 | 08:17</p>
+            <div class="note-footer">
+                <span>29.10.24 | 08:17</span>
+                <span class="edit-note">Edit</span>
+                <span class="delete-note">Delete</span>
+            </div>
+            
         </div>
         <!-- Hier werden dann neue Elemente eingefügt -->
     </main>
@@ -34,6 +48,14 @@
             <input type="text" placeholder="Content" id="noteContent">
             <button type="button" id="cancelButton">Cancel</button>
             <button type="button" id="addNoteButton">Add Note</button>
+        </form>
+    </section>
+    <section id="editNoteForm" class="hidden">
+        <form action="">
+            <input type="text" placeholder="Title" id="noteEditTitle">
+            <input type="text" placeholder="Content" id="noteEditContent">
+            <button type="button" id="cancelEditButton">Cancel</button>
+            <button type="button" id="saveNoteButton">Save Note</button>
         </form>
     </section>
     <script src="script.js"></script>

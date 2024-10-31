@@ -15,6 +15,7 @@ TODO:
    Priorität: Hoch
    Aufwandsschätzung: 4 Story Points
    Status: Offen
+   Zusatzinfos: Hierbei soll das bestehende Formular wiederverwendet werden
 
 DONE:
 3. Titel: Funktion zur Zeitausgabe im richtigen Format
