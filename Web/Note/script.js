@@ -6,12 +6,20 @@ const addNewNoteButton = document.querySelector("#addButton")
 const addNewNoteForm = document.querySelector("#addNoteForm")
 
 const editExistingNoteForm = document.querySelector("#editNoteForm")
+const noteEditTitle = document.querySelector("#noteEditTitle")
+const noteEditContent = document.querySelector("#noteEditContent")
+const cancelEditButton = document.querySelector("#cancelEditButton")
+const saveEditNoteButton = document.querySelector("#saveEditNoteButton")
+let previousNoteTitle = ""
+let previousNoteContent = ""
 
 const addNoteButtonForm = document.querySelector("#addNoteButton")
 const cancleNoteButtonForm = document.querySelector("#cancelButton")
 const newNoteTitle = document.querySelector("#noteTitle")
 const newNoteContent = document.querySelector("#noteContent")
 const noteList = document.querySelector("#noteList")
+
+
 
 // // 1. Notizen hinzufügen
 
@@ -64,6 +72,53 @@ function addNewNote(title, value) {
     noteList.appendChild(newNote)
 }
 
+function deleteNoteByTitleAndContent(title, content) {
+    // Das `noteList`-Element selektieren
+    
+    // Alle Notizen (`.note`-Divs) innerhalb `noteList` finden
+    const notes = noteList.getElementsByClassName("note");
+    
+    // Durch die Notizen iterieren und nach Übereinstimmung suchen
+    for (let note of notes) {
+        const noteTitle = note.querySelector("h3").innerText;
+        const noteContent = note.querySelector("p").innerText;
+        
+        // Überprüfen, ob Titel und Inhalt übereinstimmen
+        if (noteTitle === title && noteContent === content) {
+            noteList.removeChild(note);  // Notiz löschen
+            console.log("Notiz erfolgreich gelöscht.");
+            return;  // Funktion beenden, wenn Notiz gefunden und gelöscht wurde
+        }
+    }
+    
+    console.log("Keine Notiz mit diesem Titel und Inhalt gefunden.");
+}
+
+function noteExists(title, content) {
+    // `noteList`-Element selektieren
+    const noteList = document.getElementById("noteList");
+    
+    // Alle Notizen (`.note`-Divs) innerhalb `noteList` finden
+    const notes = noteList.getElementsByClassName("note");
+
+    // Durch die Notizen iterieren und nach Übereinstimmung suchen
+    for (let note of notes) {
+        const noteTitle = note.querySelector("h3").innerText;
+        const noteContent = note.querySelector("p").innerText;
+        
+        // Überprüfen, ob Titel und Inhalt übereinstimmen mit den globalen Variablen
+        if (noteTitle === title && noteContent === content) {
+            // Globale Variablen aktualisieren
+            previousNoteTitle = title;
+            previousNoteContent = content;
+            return true;  // Notiz existiert bereits
+        }
+    }
+    
+    return false;  // Keine Notiz gefunden
+}
+
+
 // 2. Notizen löschen
 
 //     2.1 Füge jedem Notizelement einen „Löschen“-Button hinzu.
@@ -102,17 +157,32 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Open Note Form and fill and save existing
                 editExistingNoteForm.classList.remove("hidden")
                 // save existing info
+                previousNoteTitle = noteDiv.querySelector("h3").innerHTML
+                previousNoteContent = noteDiv.querySelector("p").innerHTML
 
                 // fill out form with existing
-
-                // if cancle save existing info with old date
-
-                // if save delete old note and create new one
-                // if no changes were made keep old date and old note
+                noteEditTitle.value = previousNoteTitle
+                noteEditContent.value = previousNoteContent
             }
         }
     });
+    // if cancle save existing info with old date
+    cancelEditButton.addEventListener("click", () => {
+        editExistingNoteForm.classList.add("hidden")
+    })
+    saveEditNoteButton.addEventListener("click", (event) => {
+        // if save delete old note and create new one
+        if(noteExists(noteEditTitle.value, noteEditContent.value)){
+            return
+        }
+        // Write a function which deletes an existing Note from its title and content
+        deleteNoteByTitleAndContent(previousNoteTitle, previousNoteContent)
+        // New Note
+        addNewNote(noteEditTitle.value, noteEditContent.value)
+        // if no changes were made keep old date and old note
+    })
 });
+
 //     3.3 Füge einen Event-Listener für das Speichern der bearbeiteten Notiz hinzu.
 //     3.4 Implementiere eine Funktion, die die bearbeitete Notiz im DOM aktualisiert.
 //     3.5 Aktualisiere die LocalStorage-Daten nach dem Bearbeiten.
