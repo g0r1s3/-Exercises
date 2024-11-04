@@ -30,50 +30,140 @@ header h1 {
     color: #ffffff; /* Weißer Text */
 }
 
-#addNoteForm,
-#editNoteForm{
-    
-}
-/* Note Grid */
+/* Main Section (Als Grid) */
 
-/* main {
+#noteList {
     display: grid;
-    grid-template-columns: repeat(6, 1fr); 
-    grid-auto-rows: 200px; 
-    gap: 10px; 
-    height: 80vh;
+    width: 80%;
+    height: 100%;
+    gap: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 20px;
+    justify-items: stretch;
+}
+
+/* Media Query für kleinere Bildschirme */
+@media (max-width: 1280px) {
+    #noteList {
+        grid-template-columns: repeat(3, 1fr); /* Drei Spalten bei kleineren Displays */
+    }
+}
+
+/* Styling für einzelne Notizen */
+.note {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 250px; /* Mindestbreite für jede Note */
 }
 
 
-div.note {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    padding: 1rem;
-    margin: 1rem;
-    max-height: 10rem;
-    min-height: 10rem;
-    border: 1px solid #ddd;
-    border-radius: 1rem;
-    background-color: #ffebcd;
-    transition: background-color 0.2s;
+
+/* Titel der Notiz */
+.note h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: #333;
 }
 
-div.note:hover {
-    background-color: #f4a460;
+/* Notiztext */
+.note p {
+    font-size: 1em;
+    color: #555;
+    flex-grow: 1; /* Füllt den verfügbaren Platz aus */
+    margin-bottom: 15px;
+}
+
+/* Fußzeile der Notiz */
+.note-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9em;
+    color: #888;
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+
+/* Einzelne Elemente der Fußzeile */
+.note-footer span:first-child {
+    /* Datum */
+    font-weight: bold;
+}
+
+.note-footer span:nth-child(2) {
+    /* Edit */
+    color: #007bff;
     cursor: pointer;
 }
 
-div.note h3 {
-    text-align: center;
-    margin-bottom: .2rem;
+.note-footer span:last-child {
+    /* Delete */
+    color: #dc3545;
+    cursor: pointer;
 }
 
-div.note p:last-child {
-    font-size: 0.8em;
-    color: gray;
-    text-align: right;
-    margin: 0;
-} 
+
+/* Versteckt die Formulare standardmäßig */
+.hidden {
+    display: none;
+}
+
+/* Allgemeines Styling für #addNoteForm und #editNoteForm */
+#addNoteForm,
+#editNoteForm {
+    position: fixed; /* Überlagert den gesamten Bildschirm */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%; /* Breite des Formulars */
+    max-width: 400px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Leicht durchsichtiger Hintergrund */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 10; /* Damit die Formulare über dem Overlay liegen */
+}
+
+/* Styling für den ausgeblurten Hintergrund */
+body.modal-active::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5); /* Halbtransparenter Overlay */
+    backdrop-filter: blur(8px); /* Blur-Effekt */
+    z-index: 5; /* Liegt unter den Formularen */
+}
+
+/* Zentrieren der Form-Buttons und Eingabefelder */
+#addNoteForm form,
+#editNoteForm form {
+    display: flex;
+    flex-direction: column;
+}
+
+#addNoteForm input,
+#editNoteForm input {
+    margin-bottom: 10px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+#addNoteButton,
+#saveEditNoteButton,
+#cancelButton,
+#cancelEditButton {
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
 
 footer {
     background-color: #f4a460;
@@ -97,56 +187,12 @@ footer:hover{
     color: #f4a460;
 }
 
-
-#addNoteForm {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: none;
-    z-index: 1000;
-}
-
-
-#addNoteForm form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-
-#addNoteForm button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-#cancelButton {
+#cancelButton, #cancelEditButton {
     background-color: #f44336; 
     color: #fff;
 }
 
-#addNoteButton {
+#addNoteButton, #saveEditNoteButton {
     background-color: #4CAF50; 
     color: #fff;
 }
-
-
-.blurred {
-    filter: blur(5px);
-}
-
-
-.show {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-} */
