@@ -4,47 +4,37 @@
 // Globale Konstanten
 const addNewNoteButton = document.querySelector("#addButton")
 const addNewNoteForm = document.querySelector("#addNoteForm")
-
 const editExistingNoteForm = document.querySelector("#editNoteForm")
 const noteEditTitle = document.querySelector("#noteEditTitle")
 const noteEditContent = document.querySelector("#noteEditContent")
 const cancelEditButton = document.querySelector("#cancelEditButton")
 const saveEditNoteButton = document.querySelector("#saveEditNoteButton")
-let previousNoteTitle = ""
-let previousNoteContent = ""
-
 const addNoteButtonForm = document.querySelector("#addNoteButton")
 const cancleNoteButtonForm = document.querySelector("#cancelButton")
 const newNoteTitle = document.querySelector("#noteTitle")
 const newNoteContent = document.querySelector("#noteContent")
 const noteList = document.querySelector("#noteList")
+let previousNoteTitle = ""
+let previousNoteContent = ""
 
 
+// 1. Notizen hinzufügen
 
-// // 1. Notizen hinzufügen
-
-//     1.1 Erstelle JavaScript-Event-Listener für den Button „+“ zum Öffnen des Formulars.
-//     1.2 Implementiere eine Funktion, die das Eingabeformular sichtbar macht (CSS-Klasse .hidden entfernen).
 addNewNoteButton.addEventListener("click", () => {
     addNewNoteForm.classList.remove("hidden")
+    newNoteTitle.value = `${localStorageItemCount() + 1}. Aufgabe`
 })
-//     1.3 Füge eine Event-Listener-Funktion für den „Add Note“-Button hinzu.
 addNoteButtonForm.addEventListener("click", () => {
     addNewNote(newNoteTitle.value, newNoteContent.value)
     newNoteTitle.value = ""
     newNoteContent.value = ""
     addNewNoteForm.classList.add("hidden")
 })
-
 cancleNoteButtonForm.addEventListener("click", () => {
     newNoteTitle.value = ""
     newNoteContent.value = ""
     addNewNoteForm.classList.add("hidden")
 })
-
-
-//     1.4 Entwickle eine Funktion zum Erstellen eines neuen Notizelements (HTML mit noteTitle und noteContent).
-//     1.5 Erstelle eine Funktion, um die erstellte Notiz im DOM anzuzeigen.
 function addNewNote(title, value) {
     const newNote = document.createElement("div")
     const newNoteTitle = document.createElement("h3")
@@ -56,10 +46,7 @@ function addNewNote(title, value) {
     const newNoteDelete = document.createElement("span")
     const currentDate = getCurrentFormattedDate()
     newNoteDate.innerHTML = currentDate
-
-    // Hier speichern im LocalStorage
     saveToLocalStorage(title, value, currentDate)
-
     newNoteEdit.innerHTML = "Edit"
     newNoteEdit.classList.add("edit-note")
     newNoteDelete.innerHTML = "Delete"
@@ -76,7 +63,6 @@ function addNewNote(title, value) {
     // Zur Gesamtliste hinzufügen
     noteList.appendChild(newNote)
 }
-
 function addNewNoteFromLocalStorage(title, value, date){
     const newNote = document.createElement("div")
     const newNoteTitle = document.createElement("h3")
@@ -103,15 +89,8 @@ function addNewNoteFromLocalStorage(title, value, date){
     // Zur Gesamtliste hinzufügen
     noteList.appendChild(newNote)
 }
-
-
 function deleteNoteByTitleAndContent(title, content) {
-    // Das `noteList`-Element selektieren
-    
-    // Alle Notizen (`.note`-Divs) innerhalb `noteList` finden
     const notes = noteList.getElementsByClassName("note");
-    
-    // Durch die Notizen iterieren und nach Übereinstimmung suchen
     for (let note of notes) {
         const noteTitle = note.querySelector("h3").innerText;
         const noteContent = note.querySelector("p").innerText;
@@ -126,18 +105,11 @@ function deleteNoteByTitleAndContent(title, content) {
 }
 
 function noteExists(title, content) {
-    // `noteList`-Element selektieren
     const noteList = document.getElementById("noteList");
-    
-    // Alle Notizen (`.note`-Divs) innerhalb `noteList` finden
     const notes = noteList.getElementsByClassName("note");
-
-    // Durch die Notizen iterieren und nach Übereinstimmung suchen
     for (let note of notes) {
         const noteTitle = note.querySelector("h3").innerText;
         const noteContent = note.querySelector("p").innerText;
-        
-        // Überprüfen, ob Titel und Inhalt übereinstimmen mit den globalen Variablen
         if (noteTitle === title && noteContent === content) {
             // Globale Variablen aktualisieren
             previousNoteTitle = title;
@@ -145,15 +117,11 @@ function noteExists(title, content) {
             return true;  // Notiz existiert bereits
         }
     }
-    
     return false;  // Keine Notiz gefunden
 }
 
 
 // 2. Notizen löschen
-
-//     2.1 Füge jedem Notizelement einen „Löschen“-Button hinzu.
-//     2.2 Implementiere eine Funktion, die den „Löschen“-Button erkennt und das zugehörige Notizelement entfernt.
 
 document.addEventListener("DOMContentLoaded", () => {
     displayNotesFromLocalStorage()
@@ -170,19 +138,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-
-//     2.3 Aktualisiere die LocalStorage-Daten, um die gelöschte Notiz zu entfernen.
-
 // 3. Notizen bearbeiten
 
-//     3.1 Füge jedem Notizelement einen „Bearbeiten“-Button hinzu.
-//     3.2 Entwickle eine Funktion, die den „Bearbeiten“-Modus aktiviert und den Inhalt in die Eingabefelder lädt.
 document.addEventListener("DOMContentLoaded", () => {
-
     // Event-Listener für das Eltern-Element setzen
     noteList.addEventListener("click", (event) => {
-        // Prüfen, ob das Ziel-Element die Klasse 'delete-note' hat
         if (event.target.classList.contains("edit-note")) {
             const noteDiv = event.target.closest(".note");
             if (noteDiv) {
@@ -208,8 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if(noteExists(noteEditTitle.value, noteEditContent.value)){
             return
         }
-        // Hier wird irgendwo die alte Note als neue hinzugefügt. Zusätzlich zu der wirklich neuen. Es werden also zwei in den LS gespeichert
-        // Write a function which deletes an existing Note from its title and content
         deleteNoteByTitleAndContent(previousNoteTitle, previousNoteContent)
         // if no changes were made keep old date and old note
         changeAtLocalStorage(previousNoteTitle, previousNoteContent, noteEditTitle.value, noteEditContent.value)
@@ -218,23 +176,15 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 });
 
-//     3.3 Füge einen Event-Listener für das Speichern der bearbeiteten Notiz hinzu.
-//     3.4 Implementiere eine Funktion, die die bearbeitete Notiz im DOM aktualisiert.
-//     3.5 Aktualisiere die LocalStorage-Daten nach dem Bearbeiten.
+// 4. LocalStorage-Integration / LocalStorage-Funktionen
 
-// 4. LocalStorage-Integration
-
-//     4.1 Implementiere eine Funktion zum Speichern der aktuellen Notizen in LocalStorage.
 function saveToLocalStorage(title, content, date) {
     const noteObject = {
         objectTitle: title,
         objectContent: content,
         objectDate: date
     };
-
-    // Generiere eine eindeutige ID mit dem Datum und einer Zufallszahl
     const uniqueId = `${date}-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
-
     localStorage.setItem(`note-${uniqueId}`, JSON.stringify(noteObject));
 }
 
@@ -244,7 +194,6 @@ function deleteFromLocalStorage(title, content) {
         // Überprüfe, ob der Schlüssel mit "note" beginnt
         if (key.startsWith('note')) {
             const storedObject = JSON.parse(localStorage.getItem(key));
-            
             // Überprüfe, ob das gespeicherte Objekt den gewünschten Titel und Inhalt hat
             if (storedObject.objectTitle === title && storedObject.objectContent === content) {
                 // Ich komme irgendwie nie in diese If-Abzweigung
@@ -255,13 +204,7 @@ function deleteFromLocalStorage(title, content) {
                     console.log(`Key '${key}' does not exist.`);
                 }                
                 break; // Beende die Schleife, da das Objekt gefunden und gelöscht wurde
-            } else {
-                console.log("Stored title:", storedObject.objectTitle);
-                console.log("Stored content:", storedObject.objectContent);
-                console.log("Provided title:", title);
-                console.log("Provided content:", content);
-                console.log("Element not found");
-            }
+            } 
         }
     }
 }
@@ -272,36 +215,52 @@ function changeAtLocalStorage(oldTitle, oldContent, newTitle, newContent){
 }
 
 function displayNotesFromLocalStorage() {
+    const notesFromStorage = []
     for (let i = 0; i < localStorage.length; i++) {
         const key = localStorage.key(i);
         
-        if (key.startsWith('note')) {  // Prüft, ob der Schlüssel mit "note" beginnt
+        if (key.startsWith('note-')) {  // Prüft, ob der Schlüssel mit "note" beginnt
             const value = localStorage.getItem(key);
             const noteObject = JSON.parse(value); // Wandelt den JSON-String in ein Objekt um
-
             // Überprüfen, ob alle benötigten Felder existieren und definiert sind
             if (noteObject && noteObject.objectTitle && noteObject.objectContent && noteObject.objectDate) {
-                const title = noteObject.objectTitle;
-                const content = noteObject.objectContent;
-                const date = noteObject.objectDate;
-
-                // console.log(`Key: ${key}, Title: ${title}, Content: ${content}, Date: ${date}`);
-                
-                // Übergibt die tatsächlichen Werte an die Funktion
-                addNewNoteFromLocalStorage(title, content, date);
+                notesFromStorage.push(noteObject)
             } else {
-                // console.warn(`Ein Eintrag im LocalStorage hat fehlende oder undefinierte Felder: ${key}`);
+                console.warn(`Ein Eintrag im LocalStorage hat fehlende oder undefinierte Felder: ${key}`);
             }
         }
     }
+    // Sortieren der Liste alphabetisch nach `objectTitle`
+    notesFromStorage.sort((a, b) => {
+        if (a.objectTitle < b.objectTitle) {
+            return -1; // a kommt vor b
+        }
+        if (a.objectTitle > b.objectTitle) {
+            return 1; // b kommt vor a
+        }
+        return 0; // keine Änderung
+    });
+    notesFromStorage.forEach((note) =>{
+        const title = note.objectTitle;
+        const content = note.objectContent;
+        const date = note.objectDate;
+        addNewNoteFromLocalStorage(title, content, date);
+    })
 }
 
-//     4.2 Entwickle eine Funktion, die beim Laden der Seite die gespeicherten Notizen aus LocalStorage lädt.
-//     4.3 Stelle sicher, dass hinzugefügte, gelöschte und bearbeitete Notizen korrekt in LocalStorage aktualisiert werden.
+function localStorageItemCount() {
+    let count = 0;
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith("note-")) {
+            count++;
+        }
+    }
+    return count;
+}
 
 // 5. Zusätzliche Details
 
-//     5.1 Füge eine Datum-/Uhrzeit-Funktion hinzu, die die Erstellungszeit in jeder Notiz anzeigt.
 function getCurrentFormattedDate() {
     const now = new Date();
     const day = String(now.getDate()).padStart(2, '0');
@@ -309,12 +268,8 @@ function getCurrentFormattedDate() {
     const year = String(now.getFullYear()).slice(-2); // Nur die letzten zwei Ziffern
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
-
     return `${day}.${month}.${year} | ${hours}:${minutes}`;
 }
-
-//     5.2 Implementiere eine Validierungsfunktion für leere Eingabefelder (für Titel und Inhalt).
-//     5.3 Style das Formular und die Notizen-Elemente für eine bessere Benutzererfahrung.
 
 // General Keydown Events
 document.addEventListener("keydown", (event) => {
@@ -326,6 +281,7 @@ document.addEventListener("keydown", (event) => {
         if(addNewNoteForm.classList.contains("hidden") && editExistingNoteForm.classList.contains("hidden")){
             // Es soll das hinzufügen Menü geöffnet werden
             addNewNoteForm.classList.remove("hidden")
+            newNoteTitle.value = `${localStorageItemCount() + 1}. Aufgabe`
         } else if(!(addNewNoteForm.classList.contains("hidden")) && editExistingNoteForm.classList.contains("hidden")) {
             addNewNote(newNoteTitle.value, newNoteContent.value)
             newNoteTitle.value = ""
