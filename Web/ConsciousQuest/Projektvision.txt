@@ -1,0 +1,41 @@
+Ziel ist es einen "Trainingsplatz" für den Geist zu erschaffen.
+Es gibt die Möglichkeit verschiedene Übungen durchzuführen und zu entdecken und seinen Fortschritt zu Überblicken.
+Es soll ein "Routinen" Feature hinzugefügt werden, dasss die zu erledigenden Aufgaben für den aktuellen Tag anzeigt.
+Es soll Spaß machen die App zu benutzen und Nutzer sollen mit Awards und ähnlichem am Laufen gehalten werden.
+Die Übungen unterscheiden sich voneinander - hier einige vorstellbare Beispiele:
+
+1. Achtsamkeit und Entspannung
+    Meditationen
+    Atemübungen
+    Achtsamkeitsübungen
+    Entspannungstechniken
+    Geführte Meditationen
+    Spaziergang
+
+2. Selbstentwicklung und Inspiration
+    Visualisierungen
+    Affirmationen / Autosuggestionen
+    Dankbarkeitspraxis
+    Positive Visualisierung
+    Mantras
+    Selbstcoaching
+
+3. Bewegung und Körper
+    Yoga
+    Dehnungen
+    Spaziergang
+
+4. Wissen und Reflexion
+    Lesen
+    Journaling
+    Selbstreflexion
+    Kreatives Schreiben
+    Konzentrationsübungen
+
+Zu den Übungen sollen kurze Erklärungen geliefert werden sowie wissenschaftliche Erkenntnisse.
+
+Die App lehnt das Preismodell von Headspace und co. ab.
+Vorerst wird die App ohne Nutzerprofil lokal im Browser laufen und den LocalStorage nutzen.
+Eine Export und Importfunktion wird bereitgestellt um den Browser wechseln zu können.
+Später sind Nutzerprofile und eine Datenbankanbindung denkbar.
+Private Daten der Nutzer werden entweder gar nicht, oder verschlüsselt abgespeichert.
