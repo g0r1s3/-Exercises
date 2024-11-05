@@ -16,6 +16,7 @@ const newNoteContent = document.querySelector("#noteContent")
 const noteList = document.querySelector("#noteList")
 let previousNoteTitle = ""
 let previousNoteContent = ""
+const downloadButton = document.querySelector("#downloadButton")
 
 
 // 1. Notizen hinzufügen
@@ -248,6 +249,35 @@ function displayNotesFromLocalStorage() {
     })
 }
 
+function getNotesAsText() {
+    const notes = [];
+
+    // Alle Notizen aus dem localStorage holen
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        if (key.startsWith('note-')) {
+            const note = JSON.parse(localStorage.getItem(key));
+            if (note && note.objectTitle && note.objectContent && note.objectDate) {
+                notes.push(note);
+            }
+        }
+    }
+
+    // Alphabetische Sortierung der Notizen nach Titel
+    notes.sort((a, b) => a.objectTitle.localeCompare(b.objectTitle));
+
+    // Notizen als String formatieren
+    let notesText = '';
+    notes.forEach(note => {
+        notesText += `Titel: ${note.objectTitle}\n`;
+        notesText += `Inhalt: ${note.objectContent}\n`;
+        notesText += `Datum: ${note.objectDate}\n\n`;
+    });
+
+    return notesText.trim(); // Entfernt das letzte zusätzliche Zeilenende
+}
+
+
 function localStorageItemCount() {
     let count = 0;
     for (let i = 0; i < localStorage.length; i++) {
@@ -303,3 +333,27 @@ document.addEventListener("keydown", (event) => {
         }
     }
 });
+
+// Download
+downloadButton.addEventListener("click", () => {
+    const text = getNotesAsText()
+    const blob = new Blob([text], {type: "text/plain"})
+                
+    // Erstellen eines temporären Links
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Notes.txt"; // Name der heruntergeladenen Datei
+    
+    // Automatisches Klicken auf den Link und anschließendes Entfernen
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+})
+
+// Titel: 1. Aufgabe
+// Inhalt: Ein Flagsystem wäre Toll. Jede Aufgabe soll zusätzlich noch eine Flag bekommen die dann auf der Note angezeigt wird. Das könnte man durch ein Dropdown umsetzen. Dadurch können Kategorien wie "Bug", "Feature" oder "Test" erstellt werden
+// Datum: 05.11.24 | 08:12
+
+// Titel: 2. Aufgabe
+// Inhalt: Eine Historie über die gelöschten Notizen wäre interessant. Möglicherweise ein Button mit dem man die bereits gelöschten mit Anzeigen kann
+// Datum: 05.11.24 | 08:32

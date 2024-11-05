@@ -185,3 +185,31 @@ footer:hover {
     color: #f4a460;
     border: 3px solid #f4a460;
 }
+
+/* Download Button */
+
+#downloadButton {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background-color: #f4a460;
+    color: #fff;
+    font-size: 2rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+}
+
+#downloadButton:hover {
+    background-color: #fffaf0;
+    color: #f4a460;
+    border: 3px solid #f4a460;
+}
