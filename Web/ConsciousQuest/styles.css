@@ -76,7 +76,7 @@ a:hover {
 }
 
 /* Grundlegende Button-Stile */
-button {
+.btn {
   background-color: var(--primary-blue);
   color: #fff;
   padding: 0.5rem 1rem;
@@ -84,11 +84,39 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-size: var(--font-size-base);
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-button:hover {
+.btn:hover {
   background-color: var(--primary-purple);
+}
+
+.btn-round {
+  border-radius: 50%;
+  font-size: 1.4rem;
+  height: 2.8rem;
+  width: 2.8rem;
+  padding: 0;
+}
+
+/* Grundlegende Select-Stile */
+
+select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--primary-blue); /* Optional: Farbe bei Fokussierung */
 }
 
 /* Header Styling */
@@ -102,6 +130,19 @@ header {
 
 /* Main Styling */
 main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+main section {
+  border: 1px dotted gray;
+  border-radius: 1rem;
+  margin: 1rem;
+  padding: 1rem;
+  width: 80%;
+  min-height: 8rem;
 }
 
 /* Footer Styling */
