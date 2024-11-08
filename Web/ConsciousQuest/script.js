@@ -24,6 +24,17 @@ footerText.textContent = `© ${currentYear} ConsciousQuest`;
 
 const exerciseSelection = document.getElementById("exercise-selection");
 
+// Functions
+
+const addExercise = (exercise) => {
+  const completionTime = new Date().toLocaleString(); // Aktueller Zeitpunkt als lesbares Format
+  console.log(
+    `Übung ${exercise} erfolgreich abgeschlossen am ${completionTime}.`
+  );
+  //   Jetzt zum Datenobjekt im LocalStorage hinzufügen
+  //   Anschließend auf dem Profil ausgeben
+};
+
 // Eventlisteners
 
 document.addEventListener("change", (event) => {
@@ -65,6 +76,13 @@ document.addEventListener("change", (event) => {
 <option value="focus-exercises">Konzentrationsübungen</option>
         `;
     }
-    console.log(event.target.value);
+  }
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target.id === "add-exercise-btn") {
+    const selectedExercise =
+      document.getElementById("exercise-selection").value;
+    addExercise(selectedExercise);
   }
 });

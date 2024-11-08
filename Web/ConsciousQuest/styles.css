@@ -145,6 +145,16 @@ main section {
   min-height: 8rem;
 }
 
+#exercise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#exercise select {
+  margin-bottom: 1.4rem;
+}
+
 /* Footer Styling */
 footer {
   background-color: var(--primary-blue);
