@@ -2,7 +2,8 @@
 
 // Klassendefinitionen
 class Exercise {
-  constructor(name, category, duration, date, description) {
+  constructor(user, name, category, duration, date, description) {
+    this.user = user;
     this.name = name; // Name der Übung
     this.category = category; // Kategorie der Übung
     this.duration = duration; // Dauer der Übung
@@ -13,14 +14,6 @@ class Exercise {
 
 // Wie können alle Übungen abgespeichert werden?
 // Die Idee ist, dass bei jedem hinzufügen einer Übung nur ein kleiner Teil des Objekts (Datum, etc.) bearbeitet werden muss
-const exerciseMeditation = new Exercise(
-  "meditation",
-  "mindfulness",
-  "True",
-  "addCurrentDate",
-  "addStartTime",
-  "Einfache Kurzmeditation"
-);
 
 class User {
   constructor(name, exerciseList) {
@@ -29,7 +22,7 @@ class User {
   }
 }
 
-const user = new User("Andreas Schmidt", []);
+const user = new User("g0r1s3", []);
 
 const footerText = document.getElementById("footer-text");
 const currentYear = new Date().getFullYear();
@@ -40,21 +33,98 @@ const exerciseSelection = document.getElementById("exercise-selection");
 // Functions
 
 const addExercise = (exercise) => {
+  const exerciseDataFromHardcode = {
+    name: exercise,
+    category: "",
+    description: "",
+  };
+  const foundExercise = exerciseData.find((item) => item.name === exercise);
+  if (foundExercise) {
+    exerciseDataFromHardcode.category = foundExercise.category;
+    exerciseDataFromHardcode.description = foundExercise.description;
+  } else {
+    console.error("Übung nicht gefunden:", exercise);
+  }
   const completionTime = new Date().toLocaleString(); // Aktueller Zeitpunkt als lesbares Format
   console.log(
     `Übung ${exercise} erfolgreich abgeschlossen am ${completionTime}.`
   );
+  const exerciseObject = new Exercise(
+    user.name,
+    exerciseDataFromHardcode.name,
+    exerciseDataFromHardcode.category,
+    completionTime,
+    completionTime,
+    exerciseDataFromHardcode.description
+  );
+  // console.log(exerciseObject);
+  saveExerciseToLocalStorage(exerciseObject);
+  // Jetzt muss das Objekt im Localstorage gespeichert werden
+  // Anschließend sollte es unter Dein Profil im Dashboard ausgegeben werden
+  // Welche Localstorage Funktionen werden generell benötigt? Am besten gleich alle Programmieren
+
   //   Jetzt zum Datenobjekt im LocalStorage hinzufügen
-  if (exercise === "meditation") {
-    exerciseMeditation.date = completionTime;
-    user.exerciseList.push(exerciseMeditation);
-  }
-  console.log(user.exerciseList);
+  // console.log(user.exerciseList);
   //   Irgendwo müssen die ganzen Exercises abgespeichert worden sein
   //   Anschließend auf dem Profil ausgeben
 };
 
+// LocalStorage Funktionen
+
+const saveExerciseToLocalStorage = (exerciseObject) => {
+  localStorage.setItem(
+    `cq-${exerciseObject.user}-${exerciseObject.date}`,
+    JSON.stringify(exerciseObject)
+  );
+};
+
+const returnExercisesFromLocalStorageForUser = (username) => {
+  const exercises = [];
+  // Über alle Schlüssel im localStorage iterieren
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    // Prüfen, ob der Schlüssel mit "cq-{username}-" beginnt
+    if (key.startsWith(`cq-${username}-`)) {
+      const exerciseObject = JSON.parse(localStorage.getItem(key)); // Objekt parsen
+      exercises.push(exerciseObject); // Objekt zur Liste hinzufügen
+    }
+  }
+  return exercises;
+};
+
+const printLocalStorage = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    // Nur Schlüssel ausgeben, die mit "cq-" beginnen
+    if (key.startsWith("cq-")) {
+      const value = localStorage.getItem(key);
+      console.log(`Schlüssel: ${key}, Wert: ${value}`);
+    }
+  }
+};
+
+const deleteLocalStorage = () => {
+  // Durchlaufe alle Schlüssel und speichere die zu löschenden
+  const keysToDelete = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    // Füge nur Schlüssel hinzu, die mit "cq-" beginnen
+    if (key.startsWith("cq-")) {
+      keysToDelete.push(key);
+    }
+  }
+  // Entferne die gespeicherten Schlüssel
+  keysToDelete.forEach((key) => localStorage.removeItem(key));
+  console.log("Alle 'cq-' Einträge wurden aus dem LocalStorage entfernt.");
+};
+
 // Eventlisteners
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  // Überprüfen, ob categorySelection existiert
+  const categorySelection = document.getElementById("category-selection");
+  categorySelection.selectedIndex = 0; // Setzt die erste Option als ausgewählt
+});
 
 document.addEventListener("change", (event) => {
   if (
@@ -105,3 +175,122 @@ document.addEventListener("click", (event) => {
     addExercise(selectedExercise);
   }
 });
+
+// Hardcoded Data
+
+const exerciseData = [
+  {
+    name: "meditation",
+    category: "mindfulness",
+    description:
+      "A practice to calm the mind and focus on the present moment, often through breath or mantra.",
+  },
+  {
+    name: "breathing-exercises",
+    category: "mindfulness",
+    description:
+      "Techniques focused on breath control to reduce stress and increase mental clarity.",
+  },
+  {
+    name: "mindfulness-exercises",
+    category: "mindfulness",
+    description:
+      "Activities to enhance awareness and acceptance of the present moment without judgment.",
+  },
+  {
+    name: "relaxation-techniques",
+    category: "mindfulness",
+    description:
+      "Methods designed to release tension and reduce stress in the body and mind.",
+  },
+  {
+    name: "guided-meditation",
+    category: "mindfulness",
+    description:
+      "Meditations led by a voice guiding focus, relaxation, and awareness through prompts.",
+  },
+  {
+    name: "visualizations",
+    category: "self-development",
+    description:
+      "Mental imagery exercises to focus on positive goals and outcomes.",
+  },
+  {
+    name: "affirmations",
+    category: "self-development",
+    description:
+      "Positive statements repeated to reinforce self-belief and encourage positive mindset.",
+  },
+  {
+    name: "gratitude-practice",
+    category: "self-development",
+    description:
+      "A habit of reflecting on things to be thankful for, fostering a positive outlook.",
+  },
+  {
+    name: "positive-visualization",
+    category: "self-development",
+    description:
+      "Imagining successful outcomes to inspire motivation and belief in achieving goals.",
+  },
+  {
+    name: "mantras",
+    category: "self-development",
+    description:
+      "Words or phrases repeated to focus the mind and cultivate specific intentions.",
+  },
+  {
+    name: "self-coaching",
+    category: "self-development",
+    description:
+      "Guiding oneself through personal goals and challenges to foster growth and resilience.",
+  },
+  {
+    name: "yoga",
+    category: "movement",
+    description:
+      "A series of postures and breathing exercises to improve flexibility, strength, and relaxation.",
+  },
+  {
+    name: "stretching",
+    category: "movement",
+    description:
+      "Exercises aimed at increasing flexibility and relieving muscle tension.",
+  },
+  {
+    name: "walking",
+    category: "movement",
+    description:
+      "A low-impact physical activity that promotes overall health and mental clarity.",
+  },
+  {
+    name: "reading",
+    category: "knowledge",
+    description:
+      "The act of absorbing written information to increase knowledge and stimulate the mind.",
+  },
+  {
+    name: "journaling",
+    category: "knowledge",
+    description:
+      "Writing down thoughts and experiences to reflect, clarify, and process emotions.",
+  },
+  {
+    name: "self-reflection",
+    category: "knowledge",
+    description:
+      "The practice of examining one's thoughts and actions to gain insight and growth.",
+  },
+  {
+    name: "creative-writing",
+    category: "knowledge",
+    description:
+      "Expressing thoughts and stories through writing, boosting creativity and self-expression.",
+  },
+  {
+    name: "focus-exercises",
+    category: "knowledge",
+    description:
+      "Activities that train concentration, helping to improve mental clarity and attention span.",
+  },
+];

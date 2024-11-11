@@ -16,7 +16,7 @@
       <section id="dashboard">Dein Profil</section>
       <section id="exercise">
         <label for="category-selection">Kategorie auswählen:</label>
-        <select id="category-selection" name="exercise">
+        <select id="category-selection" name="exercise" required>
           <option value="" disabled selected>Kategorie auswählen</option>
           <option value="mindfulness">Achtsamkeit und Entspannung</option>
           <option value="self-development">
@@ -25,14 +25,15 @@
           <option value="movement">Bewegung und Körper</option>
           <option value="knowledge">Wissen und Reflexion</option>
         </select>
+
         <label for="exercise-selection">Übung auswählen:</label>
         <select id="exercise-selection" disabled name="exercise">
           <option value="" disabled selected>Übung auswählen</option>
-          <option value="meditation">Meditationen</option>
+          <!-- <option value="meditation">Meditationen</option>
           <option value="breathing-exercises">Atemübungen</option>
           <option value="mindfulness-exercises">Achtsamkeitsübungen</option>
           <option value="relaxation-techniques">Entspannungstechniken</option>
-          <option value="guided-meditation">Geführte Meditationen</option>
+          <option value="guided-meditation">Geführte Meditationen</option> -->
         </select>
         <button id="add-exercise-btn" class="btn">Übung hinzufügen</button>
       </section>
