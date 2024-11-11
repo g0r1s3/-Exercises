@@ -11,12 +11,25 @@ class Exercise {
   }
 }
 
+// Wie können alle Übungen abgespeichert werden?
+// Die Idee ist, dass bei jedem hinzufügen einer Übung nur ein kleiner Teil des Objekts (Datum, etc.) bearbeitet werden muss
+const exerciseMeditation = new Exercise(
+  "meditation",
+  "mindfulness",
+  "True",
+  "addCurrentDate",
+  "addStartTime",
+  "Einfache Kurzmeditation"
+);
+
 class User {
   constructor(name, exerciseList) {
     this.name = name; // Benutzername
     this.exerciseList = exerciseList; // Übungsliste
   }
 }
+
+const user = new User("Andreas Schmidt", []);
 
 const footerText = document.getElementById("footer-text");
 const currentYear = new Date().getFullYear();
@@ -32,6 +45,12 @@ const addExercise = (exercise) => {
     `Übung ${exercise} erfolgreich abgeschlossen am ${completionTime}.`
   );
   //   Jetzt zum Datenobjekt im LocalStorage hinzufügen
+  if (exercise === "meditation") {
+    exerciseMeditation.date = completionTime;
+    user.exerciseList.push(exerciseMeditation);
+  }
+  console.log(user.exerciseList);
+  //   Irgendwo müssen die ganzen Exercises abgespeichert worden sein
   //   Anschließend auf dem Profil ausgeben
 };
 
