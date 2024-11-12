@@ -28,6 +28,7 @@ const footerText = document.getElementById("footer-text");
 const currentYear = new Date().getFullYear();
 footerText.textContent = `© ${currentYear} ConsciousQuest`;
 
+const exerciseList = document.getElementById("exercise-list");
 const exerciseSelection = document.getElementById("exercise-selection");
 
 // Functions
@@ -59,6 +60,7 @@ const addExercise = (exercise) => {
   );
   // console.log(exerciseObject);
   saveExerciseToLocalStorage(exerciseObject);
+  refreshDashboard(user.name);
   // Jetzt muss das Objekt im Localstorage gespeichert werden
   // Anschließend sollte es unter Dein Profil im Dashboard ausgegeben werden
   // Welche Localstorage Funktionen werden generell benötigt? Am besten gleich alle Programmieren
@@ -118,12 +120,21 @@ const deleteLocalStorage = () => {
   console.log("Alle 'cq-' Einträge wurden aus dem LocalStorage entfernt.");
 };
 
+// Dashboard / Profile
+
+const refreshDashboard = (username) => {
+  const exerciseListItems = returnExercisesFromLocalStorageForUser(user.name);
+  console.log(exerciseListItems);
+  exerciseList.innerText = exerciseListItems;
+};
+
 // Eventlisteners
 
 document.addEventListener("DOMContentLoaded", (event) => {
   // Überprüfen, ob categorySelection existiert
   const categorySelection = document.getElementById("category-selection");
   categorySelection.selectedIndex = 0; // Setzt die erste Option als ausgewählt
+  refreshDashboard(user.name);
 });
 
 document.addEventListener("change", (event) => {
