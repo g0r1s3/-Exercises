@@ -1,23 +1,68 @@
-Titel: 1. Aufgabe
-Inhalt: In der Main Section des bodys sollen untereinander die verschiedenen Features der App auftauchen. Die ersten beiden, die Entwickelt werden sollen sind ein Dashboard mit einem kleinen Profil und Statistiken. Das Zweite sind Übungen die man Starten kann. Überlege dir zu jedem dieser Sections nötige Daten und Anzeigeelemente, die man benötigt.
-Datum: 05.11.24 | 10:59
+Hier ist ein **Product Backlog** für beide Dashboard-Versionen:
 
-Titel: 2. Aufgabe
-Inhalt: Das Profil mit Dashboard benötigt vorerst keine Interaktionselemente. Entwickle das Frontend.
-Datum: 05.11.24 | 11:00
+### **Einfache Version (Minimal Version)**
+TEST:
+1. **Daily Streak anzeigen**
+   - Als User möchte ich meinen Streak in Tagen sehen, um motiviert zu bleiben.
+   - *Akzeptanzkriterium*: Die Anzeige zeigt den aktuellen Streak und ist gut sichtbar.
+   
+TEST:
+2. **Anzahl an Übungen / Gesamtzeit anzeigen**
+   - Als User möchte ich die Gesamtanzahl und die Zeit meiner Übungen sehen, um meine Fortschritte zu verstehen.
+   - *Akzeptanzkriterium*: Die Anzeige zeigt die Gesamtzahl der Übungen und die gesamte Übungsdauer.
+FIX: Bisher wird die Dauer der Übungen noch nicht korrekt erfasst sonder pauschal 15 Minuten pro Übung angesetzt.
 
-Titel: 3. Aufgabe
-Inhalt: Im Übungselement hat man zwei Buttons. Man kann Übungen abschließen und starten. Wenn man sie abschließt werden sie direkt zum Profil bzw. Dashboard hinzugefügt. Wenn man sie startet, dann kann man mit einem Timer die dauer der Übung bestimmen. Der Timer lässt sich auch abbrechen. Wenn der Timer allerdings abgelaufen ist, dann ist es wie wenn man die Übung abgeschlossen hat.
-Datum: 05.11.24 | 11:03
+TODO:
+3. **Kalender-Heatmap**
+   - Als User möchte ich eine Heatmap für meine Übungsaktivität sehen, um zu erkennen, wann ich besonders aktiv war.
+   - *Akzeptanzkriterium*: Die Heatmap zeigt Aktivitätstage farblich abgestuft basierend auf der Intensität.
 
-Titel: 4. Aufgabe
-Inhalt: Denke dir ein Umfangreiches Datenschema aus und visualisiere es.
-Datum: 05.11.24 | 11:04
+TODO:
+### **Komplexe Version (Erweiterte Version)**
+4. **Achievement-System mit aktuellem Rang**
+   - Als User möchte ich ein Achievement-System sehen, das meinen Fortschritt mit Rang und Belohnungen darstellt.
+   - *Akzeptanzkriterium*: Das Achievement-System zeigt aktuelle und erreichte Ränge sowie die Anzahl freigeschalteter Achievements an.
 
-Titel: 5. Aufgabe
-Inhalt: Überlege dir, wie die Daten auf dem Dashboard dargestellt werden können. Welche Optionen gibt es? Welche Darstellungsarten sind Realistisch?
-Datum: 05.11.24 | 11:05
+TODO:
+5. **Achievements für bestimmte Kategorien**
+   - Als User möchte ich Achievements für spezifische Übungskategorien sehen, um motiviert zu bleiben.
+   - *Akzeptanzkriterium*: Jedes Achievement zeigt die Kategorie, die Fortschrittsstufe und eine Beschreibung.
 
-Titel: 6. Aufgabe
-Inhalt: Ein Nutzer hat welche Eigenschaften? Eine Übung hat welche Eigenschaften?
+TODO:
+6. **Übungsdauer-Verteilung (Tortendiagramm)**
+   - Als User möchte ich sehen, wie viel Zeit ich in jede Kategorie investiert habe.
+   - *Akzeptanzkriterium*: Die Verteilung zeigt die Prozentzahl der Zeit für jede Kategorie in einem Tortendiagramm.
+
+TODO:
+7. **Beliebteste Übung**
+   - Als User möchte ich meine meistgenutzte Übung sehen, um meine Präferenzen zu kennen.
+   - *Akzeptanzkriterium*: Das Dashboard zeigt die Übung mit der höchsten Wiederholungsanzahl oder der längsten Dauer an.
+
+TODO:
+8. **Wochenrückblick**
+   - Als User möchte ich eine Zusammenfassung meines Fortschritts für die Woche sehen.
+   - *Akzeptanzkriterium*: Der Wochenrückblick zeigt die Gesamtübungszeit, Anzahl an Übungen, neue Achievements und das Erreichen gesetzter Ziele.
+
+TODO:
+9. **Monatsrückblick**
+   - Als User möchte ich eine Zusammenfassung für den Monat sehen, um meine langfristigen Fortschritte zu verstehen.
+   - *Akzeptanzkriterium*: Der Monatsrückblick zeigt gesamt und neue Erfolge sowie alle durchgeführten Übungen an.
+
+TODO:
+10. **Ziel-Anzeige (inkl. Fortschritt)**
+    - Als User möchte ich Ziele setzen und meinen Fortschritt zu diesen Zielen sehen.
+    - *Akzeptanzkriterium*: Die Ziel-Anzeige zeigt den Fortschritt für wöchentliche oder monatliche Ziele und eine klare Statusanzeige.
+
+TODO:
+### **Zusätzliche Aufgaben**
+11. **Schaltfläche zur Anzeige-Erweiterung**
+    - Als User möchte ich per Klick zwischen der einfachen und der komplexen Ansicht wechseln.
+    - *Akzeptanzkriterium*: Ein Button wechselt nahtlos zwischen der kompakten und erweiterten Version des Dashboards.
+
+### **Priorisierung**
+- Priorität 1: Daily Streak, Anzahl an Übungen / Gesamtzeit, Kalender-Heatmap.
+- Priorität 2: Schaltfläche zur Anzeige-Erweiterung, Achievement-System, Übungsdauer-Verteilung, Ziel-Anzeige.
+- Priorität 3: Beliebteste Übung, Wochen- und Monatsrückblick.
+
+Das ermöglicht dir, das Dashboard schrittweise aufzubauen und die Basis-Features zuerst umzusetzen.
 Datum: 05.11.24 | 11:06

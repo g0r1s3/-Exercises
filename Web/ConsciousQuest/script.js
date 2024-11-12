@@ -28,7 +28,13 @@ const footerText = document.getElementById("footer-text");
 const currentYear = new Date().getFullYear();
 footerText.textContent = `© ${currentYear} ConsciousQuest`;
 
-const exerciseList = document.getElementById("exercise-list");
+const dashboardExercisesCompletedDuration = document.getElementById(
+  "dashboard-exercises-completed-duration"
+);
+const dashboardExercisesCompleted = document.getElementById(
+  "dashboard-exercises-completed"
+);
+const dashboardDailyStreak = document.getElementById("dashboard-daily-streak");
 const exerciseSelection = document.getElementById("exercise-selection");
 
 // Functions
@@ -72,6 +78,39 @@ const addExercise = (exercise) => {
 };
 
 // LocalStorage Funktionen
+
+const getDailyStreak = (username) => {
+  // Zuerst alle Übungen des Nutzers aus dem localStorage abrufen
+  const exercises = returnExercisesFromLocalStorageForUser(username);
+
+  // Sortiere die Übungen nach Datum (aufsteigend)
+  exercises.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+  // Falls keine Übungen vorhanden sind, Streak auf 0 setzen
+  if (exercises.length === 0) return 0;
+
+  let streak = 1; // Startet bei 1, da der erste Tag zählt
+  let currentDate = new Date(exercises[0].date); // Startdatum der ersten Übung
+
+  for (let i = 1; i < exercises.length; i++) {
+    const nextDate = new Date(exercises[i].date);
+
+    // Prüfen, ob die Übung am nächsten Kalendertag durchgeführt wurde
+    currentDate.setDate(currentDate.getDate() + 1);
+    if (currentDate.toDateString() === nextDate.toDateString()) {
+      // Wenn die Tage aufeinanderfolgen, Streak erhöhen
+      streak++;
+    } else if (currentDate < nextDate) {
+      // Falls die Übungen nicht an aufeinanderfolgenden Tagen stattfanden, Streak beenden
+      break;
+    }
+
+    // Setze das currentDate auf den aktuellen Übungstag zurück
+    currentDate = nextDate;
+  }
+
+  return streak;
+};
 
 const saveExerciseToLocalStorage = (exerciseObject) => {
   localStorage.setItem(
@@ -123,9 +162,13 @@ const deleteLocalStorage = () => {
 // Dashboard / Profile
 
 const refreshDashboard = (username) => {
-  const exerciseListItems = returnExercisesFromLocalStorageForUser(user.name);
-  console.log(exerciseListItems);
-  exerciseList.innerText = exerciseListItems;
+  dashboardExercisesCompletedDuration.innerHTML = `Total exercise time: ${
+    returnExercisesFromLocalStorageForUser(username).length * 15
+  } min`;
+  dashboardDailyStreak.innerHTML = `Daily streak: ${getDailyStreak(username)}`;
+  dashboardExercisesCompleted.innerHTML = `Total exercises completed: ${
+    returnExercisesFromLocalStorageForUser(username).length
+  }`;
 };
 
 // Eventlisteners
@@ -134,6 +177,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
   // Überprüfen, ob categorySelection existiert
   const categorySelection = document.getElementById("category-selection");
   categorySelection.selectedIndex = 0; // Setzt die erste Option als ausgewählt
+  // Dashboard beim Laden aufbauen
   refreshDashboard(user.name);
 });
 
