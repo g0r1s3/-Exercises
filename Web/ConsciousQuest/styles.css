@@ -145,6 +145,29 @@ main section {
   min-height: 8rem;
 }
 
+/* Dashboard */
+#dashboard-calendar-heatmap {
+  margin: 0 auto;
+}
+
+#dashboard-calendar-heatmap td {
+  width: 20px;
+  height: 20px;
+  background-color: var(--secondary-blue);
+}
+
+#dashboard-calendar-heatmap .dashboard-calender-heatmap-level-1 {
+  background-color: var(--secondary-purple);
+}
+
+#dashboard-calendar-heatmap .dashboard-calender-heatmap-level-2 {
+  background-color: var(--primary-blue);
+}
+
+#dashboard-calendar-heatmap .dashboard-calender-heatmap-level-3 {
+  background-color: var(--primary-purple);
+}
+
 #exercise {
   display: flex;
   flex-direction: column;

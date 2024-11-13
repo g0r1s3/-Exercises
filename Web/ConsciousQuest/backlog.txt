@@ -12,10 +12,11 @@ TEST:
    - *Akzeptanzkriterium*: Die Anzeige zeigt die Gesamtzahl der Übungen und die gesamte Übungsdauer.
 FIX: Bisher wird die Dauer der Übungen noch nicht korrekt erfasst sonder pauschal 15 Minuten pro Übung angesetzt.
 
-TODO:
+TEST:
 3. **Kalender-Heatmap**
    - Als User möchte ich eine Heatmap für meine Übungsaktivität sehen, um zu erkennen, wann ich besonders aktiv war.
    - *Akzeptanzkriterium*: Die Heatmap zeigt Aktivitätstage farblich abgestuft basierend auf der Intensität.
+FIX: RefreshHeatmap scheint nicht direkt zu funktionieren, wenn eine Übung hinzugefügt wird.
 
 TODO:
 ### **Komplexe Version (Erweiterte Version)**
