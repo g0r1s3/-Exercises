@@ -52,7 +52,7 @@ const addExercise = (exercise) => {
   } else {
     console.error("Übung nicht gefunden:", exercise);
   }
-  const completionTime = new Date().toLocaleString(); // Aktueller Zeitpunkt als lesbares Format
+  const completionTime = new Date().toISOString(); // Aktueller Zeitpunkt als lesbares Format
   console.log(
     `Übung ${exercise} erfolgreich abgeschlossen am ${completionTime}.`
   );
@@ -80,35 +80,41 @@ const addExercise = (exercise) => {
 // LocalStorage Funktionen
 
 const getDailyStreak = (username) => {
-  // Zuerst alle Übungen des Nutzers aus dem localStorage abrufen
+  // Übungen des Nutzers aus dem localStorage abrufen
   const exercises = returnExercisesFromLocalStorageForUser(username);
 
-  // Sortiere die Übungen nach Datum (aufsteigend)
+  // Logge die geladenen Übungen, um sicherzustellen, dass sie korrekt geladen wurden
+  console.log("Loaded exercises:", exercises);
+
+  // Übungen nach Datum (aufsteigend) sortieren
   exercises.sort((a, b) => new Date(a.date) - new Date(b.date));
 
-  // Falls keine Übungen vorhanden sind, Streak auf 0 setzen
-  if (exercises.length === 0) return 0;
-
-  let streak = 1; // Startet bei 1, da der erste Tag zählt
-  let currentDate = new Date(exercises[0].date); // Startdatum der ersten Übung
-
-  for (let i = 1; i < exercises.length; i++) {
-    const nextDate = new Date(exercises[i].date);
-
-    // Prüfen, ob die Übung am nächsten Kalendertag durchgeführt wurde
-    currentDate.setDate(currentDate.getDate() + 1);
-    if (currentDate.toDateString() === nextDate.toDateString()) {
-      // Wenn die Tage aufeinanderfolgen, Streak erhöhen
-      streak++;
-    } else if (currentDate < nextDate) {
-      // Falls die Übungen nicht an aufeinanderfolgenden Tagen stattfanden, Streak beenden
-      break;
-    }
-
-    // Setze das currentDate auf den aktuellen Übungstag zurück
-    currentDate = nextDate;
+  if (exercises.length === 0) {
+    console.log("No exercises found, returning streak of 0");
+    return 0;
   }
 
+  let streak = 0;
+  let currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0); // Uhrzeit auf Mitternacht setzen
+
+  for (let i = exercises.length - 1; i >= 0; i--) {
+    const exerciseDate = new Date(exercises[i].date);
+    exerciseDate.setHours(0, 0, 0, 0); // Auch auf Mitternacht setzen
+
+    console.log(`Checking exercise at index ${i}:`, exerciseDate);
+
+    if (currentDate.getTime() === exerciseDate.getTime()) {
+      streak++;
+      console.log(`Streak increased to ${streak}`);
+      currentDate.setDate(currentDate.getDate() - 1);
+    } else if (currentDate > exerciseDate) {
+      console.log("Non-consecutive day found, breaking streak");
+      break;
+    }
+  }
+
+  console.log("Final streak:", streak);
   return streak;
 };
 
