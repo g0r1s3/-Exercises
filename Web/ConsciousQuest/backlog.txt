@@ -29,7 +29,7 @@ TODO:
    - Als User möchte ich Achievements für spezifische Übungskategorien sehen, um motiviert zu bleiben.
    - *Akzeptanzkriterium*: Jedes Achievement zeigt die Kategorie, die Fortschrittsstufe und eine Beschreibung.
 
-TODO:
+TEST:
 6. **Übungsdauer-Verteilung (Tortendiagramm)**
    - Als User möchte ich sehen, wie viel Zeit ich in jede Kategorie investiert habe.
    - *Akzeptanzkriterium*: Die Verteilung zeigt die Prozentzahl der Zeit für jede Kategorie in einem Tortendiagramm.

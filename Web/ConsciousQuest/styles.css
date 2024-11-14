@@ -50,6 +50,10 @@ body {
   min-height: 100vh;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Typografie */
 h1,
 h2,
@@ -100,6 +104,28 @@ a:hover {
   height: 2.8rem;
   width: 2.8rem;
   padding: 0;
+}
+
+.btn-wide {
+  margin-top: 1rem;
+  width: 100%; /* Button nimmt die gesamte Breite ein */
+  padding: 0.5rem 1rem;
+  background-color: transparent; /* Kein Hintergrund für Ghost-Effekt */
+  color: var(--primary-blue); /* Textfarbe auf Primary-Blue setzen */
+  border: 2px solid var(--primary-blue); /* Border in Primary-Blue */
+  border-radius: 4px;
+  font-size: var(--font-size-base);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-wide:hover {
+  background-color: #fff;
+  border-color: var(--primary-purple);
+  color: var(--primary-purple); /* Textfarbe auf Weiß beim Hover */
 }
 
 /* Grundlegende Select-Stile */
