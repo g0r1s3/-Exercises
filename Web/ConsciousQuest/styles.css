@@ -119,6 +119,27 @@ select:focus {
   border-color: var(--primary-blue); /* Optional: Farbe bei Fokussierung */
 }
 
+/* Grundlegende Input-Number-Stile */
+
+input[type="number"] {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  width: 100%; /* optional: gleiche Breite wie das Select */
+  max-width: 200px; /* oder auf eine feste Breite setzen */
+}
+
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(
+    --primary-blue
+  ); /* gleiche Farbe wie beim Fokus im Select */
+}
+
 /* Header Styling */
 header {
   background-color: var(--primary-blue);
@@ -174,7 +195,8 @@ main section {
   align-items: center;
 }
 
-#exercise select {
+#exercise select,
+input {
   margin-bottom: 1.4rem;
 }
 

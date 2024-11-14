@@ -47,6 +47,7 @@ const dashboardExercisesCompleted = document.getElementById(
 );
 const dashboardDailyStreak = document.getElementById("dashboard-daily-streak");
 const exerciseSelection = document.getElementById("exercise-selection");
+const exerciseDuration = document.getElementById("exercise-duration");
 
 // Functions
 
@@ -71,13 +72,14 @@ const addExercise = (exercise) => {
     user.name,
     exerciseDataFromHardcode.name,
     exerciseDataFromHardcode.category,
-    completionTime,
+    parseInt(exerciseDuration.value),
     completionTime,
     exerciseDataFromHardcode.description
   );
   // console.log(exerciseObject);
   saveExerciseToLocalStorage(exerciseObject);
   refreshDashboard(user.name);
+  exerciseDuration.value = 1;
   // Jetzt muss das Objekt im Localstorage gespeichert werden
   // Anschließend sollte es unter Dein Profil im Dashboard ausgegeben werden
   // Welche Localstorage Funktionen werden generell benötigt? Am besten gleich alle Programmieren
@@ -259,9 +261,26 @@ const refreshHeatmapFromLocalStorage = () => {
 // Dashboard / Profile
 
 const refreshDashboard = (username) => {
-  dashboardExercisesCompletedDuration.innerHTML = `Total exercise time: ${
-    returnExercisesFromLocalStorageForUser(username).length * 15
-  } min`;
+  // dashboardExercisesCompletedDuration.innerHTML = `Total exercise time: ${
+  //   returnExercisesFromLocalStorageForUser(username).length * 15
+  // } min`;
+  // Berechnung der gesamten Übungszeit in Minuten
+  // Berechnung der gesamten Übungszeit in Minuten
+  const totalExerciseTime = returnExercisesFromLocalStorageForUser(
+    username
+  ).reduce((total, exercise) => {
+    if (typeof exercise.duration === "number") {
+      // Wenn `duration` ein Integer ist, füge den Wert hinzu
+      return total + exercise.duration;
+    } else {
+      // Wenn `duration` ein String (Datumsangabe) ist, füge pauschal 15 Minuten hinzu
+      return total + 15;
+    }
+  }, 0);
+
+  // Ausgabe der gesamten Übungszeit
+  dashboardExercisesCompletedDuration.innerHTML = `Total exercise time: ${totalExerciseTime} min`;
+
   dashboardDailyStreak.innerHTML = `Daily streak: ${getDailyStreak(username)}`;
   dashboardExercisesCompleted.innerHTML = `Total exercises completed: ${
     returnExercisesFromLocalStorageForUser(username).length

@@ -45,12 +45,17 @@
         <label for="exercise-selection">Übung auswählen:</label>
         <select id="exercise-selection" disabled name="exercise">
           <option value="" disabled selected>Übung auswählen</option>
-          <!-- <option value="meditation">Meditationen</option>
-          <option value="breathing-exercises">Atemübungen</option>
-          <option value="mindfulness-exercises">Achtsamkeitsübungen</option>
-          <option value="relaxation-techniques">Entspannungstechniken</option>
-          <option value="guided-meditation">Geführte Meditationen</option> -->
         </select>
+        <label for="exercise-duration">Übungs Dauer</label>
+        <input
+          type="number"
+          name="exercise-duration"
+          id="exercise-duration"
+          min="1"
+          max="120"
+          step="1"
+          placeholder="Minuten"
+        />
         <button id="add-exercise-btn" class="btn">Übung hinzufügen</button>
       </section>
       <section id="blog-article">Recent Articels</section>
