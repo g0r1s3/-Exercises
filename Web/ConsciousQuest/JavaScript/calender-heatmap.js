@@ -7,7 +7,7 @@ const refreshHeatmapFromLocalStorage = () => {
   const tooltipText = firstTd ? firstTd.getAttribute("title") : null;
 
   // Speichere alle Exercises in einer Liste ab und ändere darin das Datum in das richtige Format um
-  const exerciseList = returnExercisesFromLocalStorageForUser(user.name);
+  const exerciseList = getExercisesForUserFromLocalStorage(user.name);
   exerciseList.forEach((exercise) => {
     const originalDate = new Date(exercise.date);
     const day = String(originalDate.getDate()).padStart(2, "0");

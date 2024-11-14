@@ -31,7 +31,7 @@ const addExercise = (exercise) => {
     exerciseDataFromHardcode.description
   );
   // console.log(exerciseObject);
-  saveExerciseToLocalStorage(exerciseObject);
+  createExerciseInLocalStorage(exerciseObject);
   refreshDashboard(user.name);
   exerciseDuration.value = 1;
 };
@@ -39,12 +39,9 @@ const addExercise = (exercise) => {
 // Dashboard / Profile
 
 const refreshDashboard = (username) => {
-  // dashboardExercisesCompletedDuration.innerHTML = `Total exercise time: ${
-  //   returnExercisesFromLocalStorageForUser(username).length * 15
-  // } min`;
   // Berechnung der gesamten Übungszeit in Minuten
   // Berechnung der gesamten Übungszeit in Minuten
-  const totalExerciseTime = returnExercisesFromLocalStorageForUser(
+  const totalExerciseTime = getExercisesForUserFromLocalStorage(
     username
   ).reduce((total, exercise) => {
     if (typeof exercise.duration === "number") {
@@ -59,9 +56,11 @@ const refreshDashboard = (username) => {
   // Ausgabe der gesamten Übungszeit
   dashboardExercisesCompletedDuration.innerHTML = `Total exercise time: ${totalExerciseTime} min`;
 
-  dashboardDailyStreak.innerHTML = `Daily streak: ${getDailyStreak(username)}`;
+  dashboardDailyStreak.innerHTML = `Daily streak: ${getDailyStreakForUserFromLocalStorage(
+    username
+  )}`;
   dashboardExercisesCompleted.innerHTML = `Total exercises completed: ${
-    returnExercisesFromLocalStorageForUser(username).length
+    getExercisesForUserFromLocalStorage(username).length
   }`;
   refreshHeatmapFromLocalStorage();
   drawPieChart(colors);

@@ -1,37 +1,21 @@
-const printLocalStorage = () => {
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    // Nur Schlüssel ausgeben, die mit "cq-" beginnen
-    if (key.startsWith("cq-")) {
-      const value = localStorage.getItem(key);
-      console.log(`Schlüssel: ${key}, Wert: ${value}`);
-    }
-  }
-};
+// CRUD-Operations + Extras
 
-const deleteLocalStorage = () => {
-  // Durchlaufe alle Schlüssel und speichere die zu löschenden
-  const keysToDelete = [];
-  for (let i = 0; i < localStorage.length; i++) {
-    const key = localStorage.key(i);
-    // Füge nur Schlüssel hinzu, die mit "cq-" beginnen
-    if (key.startsWith("cq-")) {
-      keysToDelete.push(key);
-    }
-  }
-  // Entferne die gespeicherten Schlüssel
-  keysToDelete.forEach((key) => localStorage.removeItem(key));
-  console.log("Alle 'cq-' Einträge wurden aus dem LocalStorage entfernt.");
-};
+// Create
+// starts with "create"
+// ends with "InLocalStorage"
 
-const saveExerciseToLocalStorage = (exerciseObject) => {
+const createExerciseInLocalStorage = (exerciseObject) => {
   localStorage.setItem(
     `cq-${exerciseObject.user}-${exerciseObject.date}`,
     JSON.stringify(exerciseObject)
   );
 };
 
-const returnExercisesFromLocalStorageForUser = (username) => {
+// Read
+// starts with "get"
+// ends with "FromLocalStorage"
+
+const getExercisesForUserFromLocalStorage = (username) => {
   const exercises = [];
   // Über alle Schlüssel im localStorage iterieren
   for (let i = 0; i < localStorage.length; i++) {
@@ -45,9 +29,9 @@ const returnExercisesFromLocalStorageForUser = (username) => {
   return exercises;
 };
 
-const getDailyStreak = (username) => {
+const getDailyStreakForUserFromLocalStorage = (username) => {
   // Übungen des Nutzers aus dem localStorage abrufen
-  const exercises = returnExercisesFromLocalStorageForUser(username);
+  const exercises = getExercisesForUserFromLocalStorage(username);
 
   // Logge die geladenen Übungen, um sicherzustellen, dass sie korrekt geladen wurden
   console.log("Loaded exercises:", exercises);
@@ -82,4 +66,40 @@ const getDailyStreak = (username) => {
 
   console.log("Final streak:", streak);
   return streak;
+};
+
+// Update
+// starts with "update"
+// ends with "InLocalStorage"
+
+// Delete
+// starts with "delete"
+// ends with "FromLocalStorage"
+
+const deleteEverythingFromLocalStorage = () => {
+  // Durchlaufe alle Schlüssel und speichere die zu löschenden
+  const keysToDelete = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    // Füge nur Schlüssel hinzu, die mit "cq-" beginnen
+    if (key.startsWith("cq-")) {
+      keysToDelete.push(key);
+    }
+  }
+  // Entferne die gespeicherten Schlüssel
+  keysToDelete.forEach((key) => localStorage.removeItem(key));
+  console.log("Alle 'cq-' Einträge wurden aus dem LocalStorage entfernt.");
+};
+
+// Extras
+
+const printLocalStorage = () => {
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    // Nur Schlüssel ausgeben, die mit "cq-" beginnen
+    if (key.startsWith("cq-")) {
+      const value = localStorage.getItem(key);
+      console.log(`Schlüssel: ${key}, Wert: ${value}`);
+    }
+  }
 };

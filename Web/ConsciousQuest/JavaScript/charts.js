@@ -14,7 +14,7 @@ const colors = ["#aac4ff", "#b1b2ff", "#d2daff", "#A3A37B"];
 
 const returnCategoryChartData = () => {
   // Beispiel Kategorien
-  const exercises = returnExercisesFromLocalStorageForUser(user.name);
+  const exercises = getExercisesForUserFromLocalStorage(user.name);
   let totalTime = 0;
 
   // Initialisieren der Zeit pro Kategorie
