@@ -62,6 +62,9 @@ const refreshDashboard = (username) => {
   dashboardExercisesCompleted.innerHTML = `Total exercises completed: ${
     getExercisesForUserFromLocalStorage(username).length
   }`;
+  dashboardExercisesCompletedThisWeek.innerHTML = `Total exercises completed during last 7 days: ${
+    getExercisesFromLastXDaysForUserFromLocalStorage(7, user.name).length
+  }`;
   refreshHeatmapFromLocalStorage();
   drawPieChart(colors);
 };

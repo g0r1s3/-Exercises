@@ -14,6 +14,10 @@ const dashboardExercisesCompletedDuration = document.getElementById(
 const dashboardExercisesCompleted = document.getElementById(
   "dashboard-exercises-completed"
 );
+
+const dashboardExercisesCompletedThisWeek = document.getElementById(
+  "dashboard-exercises-completed-this-week"
+);
 const dashboardDailyStreak = document.getElementById("dashboard-daily-streak");
 const advancedStats = document.getElementById("advanced-stats");
 

@@ -1,5 +1,13 @@
 // CRUD-Operations + Extras
 
+// Example
+// category: "self-development"
+// date: "2024-11-14T07:54:49.691Z"
+// description: "Mental imagery exercises to focus on positive goals and outcomes."
+// duration: 15
+// name: "visualizations"
+// user: "g0r1s3"
+
 // Create
 // starts with "create"
 // ends with "InLocalStorage"
@@ -66,6 +74,23 @@ const getDailyStreakForUserFromLocalStorage = (username) => {
 
   console.log("Final streak:", streak);
   return streak;
+};
+
+const getExercisesFromLastXDaysForUserFromLocalStorage = (x, username) => {
+  const exercisesForUser = getExercisesForUserFromLocalStorage(username);
+  const exercisesDuringXDays = [];
+  const now = new Date();
+
+  exercisesForUser.forEach((exercise) => {
+    const exerciseDate = new Date(exercise.date);
+    const differenceInDays = (now - exerciseDate) / (1000 * 60 * 60 * 24);
+
+    if (differenceInDays <= x) {
+      exercisesDuringXDays.push(exercise);
+    }
+  });
+
+  return exercisesDuringXDays;
 };
 
 // Update

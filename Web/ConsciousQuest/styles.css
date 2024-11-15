@@ -229,6 +229,10 @@ main section {
   align-items: center;
 }
 
+#advanced-stats > div > * {
+  margin-bottom: 1.8rem;
+}
+
 #exercise {
   display: flex;
   flex-direction: column;
