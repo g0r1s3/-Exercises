@@ -93,6 +93,14 @@ const getExercisesFromLastXDaysForUserFromLocalStorage = (x, username) => {
   return exercisesDuringXDays;
 };
 
+const getExerciseForCategoryForUserFromLocalStorage = (category, username) => {
+  const exercisesForUser = getExercisesForUserFromLocalStorage(username);
+  const exercisesForCategory = exercisesForUser.filter(
+    (exercise) => exercise.category === category
+  );
+  return exercisesForCategory;
+};
+
 // Update
 // starts with "update"
 // ends with "InLocalStorage"
