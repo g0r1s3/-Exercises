@@ -244,6 +244,36 @@ input {
   margin-bottom: 1.4rem;
 }
 
+#goals {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goal-tile {
+  margin: 1rem;
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 1px dotted gray;
+  border-radius: 1rem;
+  padding: 20px;
+}
+
+/* Goals */
+.goal-title {
+  position: absolute;
+  top: -12px; /* Positioniert den Titel über der Border */
+  left: 20px;
+  background: white; /* Hintergrundfarbe der Kachel */
+  padding: 0 10px;
+  font-weight: bold;
+}
+
+.goal-content {
+  margin-top: 20px;
+}
+
 /* Footer Styling */
 footer {
   background-color: var(--primary-blue);
