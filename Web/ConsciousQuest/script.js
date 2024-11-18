@@ -19,9 +19,6 @@ const addExercise = (exercise) => {
     console.error("Übung nicht gefunden:", exercise);
   }
   const completionTime = new Date().toISOString(); // Aktueller Zeitpunkt als lesbares Format
-  console.log(
-    `Übung ${exercise} erfolgreich abgeschlossen am ${completionTime}.`
-  );
   const exerciseObject = new Exercise(
     user.name,
     exerciseDataFromHardcode.name,
@@ -30,7 +27,6 @@ const addExercise = (exercise) => {
     completionTime,
     exerciseDataFromHardcode.description
   );
-  // console.log(exerciseObject);
   createExerciseInLocalStorage(exerciseObject);
   refreshDashboard(user.name);
   exerciseDuration.value = 1;

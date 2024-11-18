@@ -41,14 +41,10 @@ const getDailyStreakForUserFromLocalStorage = (username) => {
   // Übungen des Nutzers aus dem localStorage abrufen
   const exercises = getExercisesForUserFromLocalStorage(username);
 
-  // Logge die geladenen Übungen, um sicherzustellen, dass sie korrekt geladen wurden
-  console.log("Loaded exercises:", exercises);
-
   // Übungen nach Datum (aufsteigend) sortieren
   exercises.sort((a, b) => new Date(a.date) - new Date(b.date));
 
   if (exercises.length === 0) {
-    console.log("No exercises found, returning streak of 0");
     return 0;
   }
 
@@ -60,19 +56,13 @@ const getDailyStreakForUserFromLocalStorage = (username) => {
     const exerciseDate = new Date(exercises[i].date);
     exerciseDate.setHours(0, 0, 0, 0); // Auch auf Mitternacht setzen
 
-    console.log(`Checking exercise at index ${i}:`, exerciseDate);
-
     if (currentDate.getTime() === exerciseDate.getTime()) {
       streak++;
-      console.log(`Streak increased to ${streak}`);
       currentDate.setDate(currentDate.getDate() - 1);
     } else if (currentDate > exerciseDate) {
-      console.log("Non-consecutive day found, breaking streak");
       break;
     }
   }
-
-  console.log("Final streak:", streak);
   return streak;
 };
 

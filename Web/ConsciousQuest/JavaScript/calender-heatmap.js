@@ -36,11 +36,6 @@ const refreshHeatmapFromLocalStorage = () => {
   };
   const startDate = tooltipText ? parseDate(tooltipText) : null;
 
-  // Debugging-Ausgaben
-  console.log("Startdatum (tooltipText):", tooltipText);
-  console.log("Liste der Übungen mit formatierten Daten:", exerciseList);
-  console.log("Zähler pro Datum (dateCounts):", dateCounts);
-
   // Nur relevante TD-Elemente auswählen und CSS-Klassen basierend auf der Übungsanzahl zuweisen
   const heatmapTable = document.getElementById("dashboard-calendar-heatmap");
   const tdElements = heatmapTable.getElementsByTagName("TD");

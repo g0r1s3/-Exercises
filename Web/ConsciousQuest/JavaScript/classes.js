@@ -17,6 +17,18 @@ class User {
   constructor(name, exerciseList) {
     this.name = name; // Benutzername
     this.exerciseList = exerciseList; // Übungsliste
+    this.goals = []; // Liste von Zielen
+  }
+}
+
+class Goal {
+  constructor(user, category, name, date, type, recurring) {
+    this.user = user;
+    this.category = category;
+    this.name = name;
+    this.date = date;
+    this.type = type; // daily or yearly?
+    this.recurring = recurring;
   }
 }
 
