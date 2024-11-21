@@ -22,13 +22,15 @@ class User {
 }
 
 class Goal {
-  constructor(user, category, name, date, type, recurring) {
+  constructor(user, category, name, date, type, count, recurring) {
     this.user = user;
     this.category = category;
-    this.name = name;
+    this.name = name; // Name der Übung
     this.date = date;
     this.type = type; // daily or yearly?
+    this.count = count;
     this.recurring = recurring;
+    this.completed = false;
   }
 }
 

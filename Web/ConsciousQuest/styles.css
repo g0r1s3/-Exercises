@@ -287,3 +287,13 @@ footer p {
   margin: 0;
   padding: 0;
 }
+
+/* Full Layout Sections */
+
+#add-goal-form {
+  position: absolute;
+  width: 40vw;
+  height: 80vh;
+  background-color: var(--primary-blue);
+  display: flex;
+}

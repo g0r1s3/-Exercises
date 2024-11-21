@@ -60,4 +60,7 @@ document.addEventListener("click", (event) => {
   if (event.target.id === "toggle-advanced-stats") {
     advancedStats.classList.toggle("hidden");
   }
+  if (event.target.id === "add-goal-btn") {
+    addGoalForm.classList.toggle("hidden");
+  }
 });

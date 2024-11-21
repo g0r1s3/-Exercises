@@ -24,3 +24,5 @@ const advancedStats = document.getElementById("advanced-stats");
 const exerciseSelection = document.getElementById("exercise-selection");
 const exerciseDuration = document.getElementById("exercise-duration");
 const footerText = document.getElementById("footer-text");
+
+const addGoalForm = document.getElementById("add-goal-form");
