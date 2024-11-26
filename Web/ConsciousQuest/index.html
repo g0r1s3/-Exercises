@@ -99,9 +99,23 @@
     <aside class="hidden" id="add-goal-form">
       <form action="">
         <!-- Kategorie -->
+        <label for="add-goal-category-selection">Kategorie auswählen:</label>
+        <select id="add-goal-category-selection" name="exercise" required>
+          <option value="" disabled selected>Kategorie auswählen</option>
+          <option value="mindfulness">Achtsamkeit und Entspannung</option>
+          <option value="self-development">
+            Selbstentwicklung und Inspiration
+          </option>
+          <option value="movement">Bewegung und Körper</option>
+          <option value="knowledge">Wissen und Reflexion</option>
+        </select>
 
         <!-- Name der Übung -->
         <!-- Dynamisch natürlich es muss also ein ChangeEV auf das Tag darüber -->
+        <label for="add-goal-exercise-selection">Übung auswählen:</label>
+        <select id="add-goal-exercise-selection" disabled name="exercise">
+          <option value="" disabled selected>Übung auswählen</option>
+        </select>
 
         <!-- Dies könnte in einer Zeile geregelt werden "X mal pro Jahr/Woche/Monat" -->
         <!-- Typ -->
@@ -109,6 +123,10 @@
         <!-- Count -->
 
         <!-- Wiederkehrend -->
+
+        <!-- Buttons -->
+        <button class="btn" id="add-goal-form-add">hinzufügen</button>
+        <button class="btn" id="add-goal-form-cancle">Abbrechen</button>
       </form>
     </aside>
     <footer><p id="footer-text"></p></footer>

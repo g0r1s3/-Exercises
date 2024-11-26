@@ -26,3 +26,6 @@ const exerciseDuration = document.getElementById("exercise-duration");
 const footerText = document.getElementById("footer-text");
 
 const addGoalForm = document.getElementById("add-goal-form");
+const addGoalExerciseSelection = document.getElementById(
+  "add-goal-exercise-selection"
+);
