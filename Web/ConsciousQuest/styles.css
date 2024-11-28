@@ -320,3 +320,47 @@ footer p {
   display: flex;
   flex-direction: column;
 }
+
+#add-goal-form form > * {
+  margin-bottom: 1rem;
+}
+
+/* Checkbox */
+
+#add-goal-recurring {
+  appearance: none; /* Entfernt das Standard-Styling */
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--primary-purple, #b1b2ff);
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+#add-goal-recurring:checked {
+  background-color: var(--primary-purple, #b1b2ff);
+  border-color: var(--primary-purple, #b1b2ff);
+}
+
+#add-goal-recurring:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#add-goal-recurring-div {
+  display: flex;
+  align-items: center; /* Vertikal zentrieren */
+  gap: 8px; /* Abstand zwischen Checkbox und Label */
+}
+
+#add-goal-recurring-div label {
+  margin-bottom: 1.2rem;
+}
