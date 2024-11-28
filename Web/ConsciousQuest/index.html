@@ -98,6 +98,7 @@
     </main>
     <aside class="hidden" id="add-goal-form">
       <form action="">
+        <h3>Ziel hinzufügen</h3>
         <!-- Kategorie -->
         <label for="add-goal-category-selection">Kategorie auswählen:</label>
         <select id="add-goal-category-selection" name="exercise" required>
@@ -119,10 +120,37 @@
 
         <!-- Dies könnte in einer Zeile geregelt werden "X mal pro Jahr/Woche/Monat" -->
         <!-- Typ -->
-
         <!-- Count -->
 
+        <div>
+          <label for="add-goal-count-input">Zahl</label>
+          <input
+            type="number"
+            id="add-goal-count-input"
+            name="numberInput"
+            min="1"
+            max="10000"
+            required
+          />
+          <span>mal pro</span>
+          <!-- <label for="add-goal-type-select">Zeitraum</label> -->
+          <select id="add-goal-type-select" name="timeSelect">
+            <option value="day">Tag</option>
+            <option value="week">Woche</option>
+            <option value="month">Monat</option>
+            <option value="year">Jahr</option>
+          </select>
+        </div>
+
         <!-- Wiederkehrend -->
+        <div>
+          <input
+            type="checkbox"
+            id="add-goal-recurring"
+            name="recurringCheckbox"
+          />
+          <label for="add-goal-recurring">Wiederkehrend</label>
+        </div>
 
         <!-- Buttons -->
         <button class="btn" id="add-goal-form-add">hinzufügen</button>
