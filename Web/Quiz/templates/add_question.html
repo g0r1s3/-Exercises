@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frage hinzufügen</title>
+  </head>
+  <body>
+    <h1>Frage hinzufügen</h1>
+    <form action="/add-question" method="POST">
+      <label for="question">Frage:</label>
+      <input type="text" id="question" name="question" required />
+      <br /><br />
+
+      <label for="option1">Antwortmöglichkeit 1:</label>
+      <input type="text" id="option1" name="options[]" required />
+      <br />
+
+      <label for="option2">Antwortmöglichkeit 2:</label>
+      <input type="text" id="option2" name="options[]" required />
+      <br />
+
+      <label for="option3">Antwortmöglichkeit 3:</label>
+      <input type="text" id="option3" name="options[]" required />
+      <br />
+
+      <label for="option4">Antwortmöglichkeit 4:</label>
+      <input type="text" id="option4" name="options[]" required />
+      <br /><br />
+
+      <label for="correct_answer">Richtige Antwort:</label>
+      <select id="correct_answer" name="correct_answer" required>
+        <option value="0">Antwort 1</option>
+        <option value="1">Antwort 2</option>
+        <option value="2">Antwort 3</option>
+        <option value="3">Antwort 4</option>
+      </select>
+      <br /><br />
+
+      <button type="submit">Frage erstellen</button>
+    </form>
+  </body>
+</html>

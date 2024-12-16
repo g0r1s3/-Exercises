@@ -1,0 +1,103 @@
+1. Benutzerverwaltung mit Punktesystem
+
+Füge eine einfache Benutzerverwaltung hinzu, sodass Spieler:
+	•	Sich mit einem Namen anmelden können.
+	•	Einen Punktestand speichern können.
+	•	Eine Highscore-Liste einsehen können.
+
+Technische Ideen:
+	•	Erweiterung der Datenbank mit einer User-Tabelle.
+	•	Speicherung der Punkte pro Benutzer.
+	•	Anzeige der Highscore-Liste auf einer neuen Seite.
+
+2. Fragen-Kategorien und Schwierigkeitsgrade
+
+Erweitere deine Fragen um Kategorien und Schwierigkeitsgrade:
+	•	Nutzer können vor dem Quiz eine Kategorie (z. B. Allgemeinwissen, Technik) und einen Schwierigkeitsgrad (leicht, mittel, schwer) auswählen.
+	•	Die Fragen werden gefiltert und entsprechend angezeigt.
+
+Technische Ideen:
+	•	Erweiterung der Question-Tabelle um Spalten category und difficulty.
+	•	Anpassung der API-Endpunkte, um Fragen nach Filtern zu liefern.
+	•	UI-Änderung: Dropdowns zur Auswahl von Kategorie und Schwierigkeitsgrad.
+
+3. Zeitlimit pro Frage (Timer)
+
+Baue einen Timer ein:
+	•	Jede Frage muss innerhalb von 30 Sekunden beantwortet werden.
+	•	Wenn die Zeit abläuft, wird die Frage als falsch gewertet und die nächste geladen.
+
+Technische Ideen:
+	•	Timer-Logik mit JavaScript (setTimeout).
+	•	Anzeige des Timers im UI.
+	•	Kommunikation mit der API, wenn die Zeit abläuft.
+
+4. Multiplayer-Modus
+
+Erstelle einen einfachen Multiplayer-Modus:
+	•	Zwei Spieler können abwechselnd Fragen beantworten.
+	•	Punkte werden für beide Spieler getrennt gezählt.
+	•	Am Ende wird der Gewinner bestimmt.
+
+Technische Ideen:
+	•	Speicherung der Punkte für beide Spieler im Frontend.
+	•	Erweiterung der Punkteanzeige, um beide Spieler zu zeigen.
+	•	Option zur Auswahl “Einzelspieler” oder “Multiplayer”.
+
+5. Verbesserte Benutzeroberfläche (UI)
+
+Optimiere die Darstellung und User Experience (UX):
+	•	Verwende ein CSS-Framework wie Bootstrap oder Tailwind CSS, um ein modernes Design zu erstellen.
+	•	Baue eine Startseite mit:
+	•	Spielregeln.
+	•	Einem “Start”-Button für das Quiz.
+	•	Statistiken der letzten Spiele (z. B. richtige Antworten).
+
+6. Fragen-Import aus einer Datei
+
+Ermögliche es, neue Fragen aus einer CSV- oder JSON-Datei zu importieren:
+	•	Nutzer können Fragen im richtigen Format hochladen.
+	•	Die Fragen werden in die Datenbank geschrieben.
+
+Technische Ideen:
+	•	Ein File-Upload-Formular in Flask.
+	•	Parsing der Datei (mit Python’s csv oder json).
+	•	Speichern der Daten in der Datenbank.
+
+7. API-Dokumentation erstellen
+
+Erstelle eine Swagger-Dokumentation für deine REST-API:
+	•	Beschreibe die Endpunkte, HTTP-Methoden und Parameter.
+	•	Nutze Flasgger oder Flask-RESTPlus, um eine interaktive API-Dokumentation bereitzustellen.
+
+Nutzen:
+	•	Deine API wird professioneller und einfacher verständlich für andere Entwickler.
+
+8. Statistiken und Analysen für Spieler
+
+Baue eine Statistik-Seite, auf der der Spieler sehen kann:
+	•	Wie viele Fragen er insgesamt beantwortet hat.
+	•	Wie viele richtig/falsch waren.
+	•	Die durchschnittliche Zeit pro Frage.
+
+Technische Ideen:
+	•	Frontend: Zeige Statistiken in Diagrammen (z. B. mit Chart.js).
+	•	Backend: Berechne die Statistiken aus den gespeicherten Spielständen.
+
+9. Integration einer KI-gestützten Fragensammlung
+
+Lass Nutzer selbst Fragen generieren, die automatisch geprüft werden:
+	•	Verwende ein API-Tool wie OpenAI GPT oder ähnliche Modelle.
+	•	Nutzer geben einen Themenbereich ein, und die KI generiert passende Fragen.
+
+Zusammenfassung
+	1.	Benutzerverwaltung + Highscore-Liste.
+	2.	Kategorien und Schwierigkeitsgrad-Filter.
+	3.	Zeitlimit pro Frage.
+	4.	Multiplayer-Modus.
+	5.	Modernes UI mit CSS-Framework.
+	6.	Import von Fragen aus einer Datei.
+	7.	API-Dokumentation (Swagger).
+	8.	Spieler-Statistiken und Analysen.
+	9.	KI-gestützte Fragegenerierung.
+

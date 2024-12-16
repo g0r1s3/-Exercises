@@ -1,0 +1,52 @@
+[
+  {
+    "question": "Was ist die Hauptstadt von Frankreich?",
+    "options": ["Paris", "Berlin", "Madrid", "Rom"],
+    "correct_answer": "Paris"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Deutschland?",
+    "options": ["Wien", "Berlin", "Amsterdam", "Prag"],
+    "correct_answer": "Berlin"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Italien?",
+    "options": ["Mailand", "Neapel", "Venedig", "Rom"],
+    "correct_answer": "Rom"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Spanien?",
+    "options": ["Barcelona", "Madrid", "Sevilla", "Valencia"],
+    "correct_answer": "Madrid"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Österreich?",
+    "options": ["Graz", "Wien", "Salzburg", "Innsbruck"],
+    "correct_answer": "Wien"
+  },
+  {
+    "question": "Was ist die Hauptstadt der Schweiz?",
+    "options": ["Genf", "Zürich", "Bern", "Basel"],
+    "correct_answer": "Bern"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Portugal?",
+    "options": ["Porto", "Lissabon", "Faro", "Coimbra"],
+    "correct_answer": "Lissabon"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Polen?",
+    "options": ["Krakau", "Danzig", "Warschau", "Posen"],
+    "correct_answer": "Warschau"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Schweden?",
+    "options": ["Malmö", "Göteborg", "Uppsala", "Stockholm"],
+    "correct_answer": "Stockholm"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Norwegen?",
+    "options": ["Bergen", "Oslo", "Trondheim", "Stavanger"],
+    "correct_answer": "Oslo"
+  }
+]

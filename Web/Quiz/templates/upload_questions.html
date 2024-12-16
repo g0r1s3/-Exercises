@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fragen-Import</title>
+  </head>
+  <body>
+    <h1>Fragen-Import</h1>
+    <form
+      action="/upload-questions"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <label for="file">Wähle eine Datei (CSV oder JSON):</label>
+      <input type="file" id="file" name="file" accept=".csv, .json" required />
+      <br /><br />
+      <button type="submit">Hochladen</button>
+    </form>
+  </body>
+</html>

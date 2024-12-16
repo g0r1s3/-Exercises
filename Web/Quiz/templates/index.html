@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Login -->
+    <div id="auth">
+      <h2>Anmelden</h2>
+      <input type="text" id="username" placeholder="Benutzername" />
+      <input type="password" id="password" placeholder="Passwort" />
+      <button onclick="register()">Registrieren</button>
+      <button onclick="login()">Anmelden</button>
+    </div>
+    <div id="quiz" style="display: none">
+      <h1>Quiz</h1>
+      <div class="quiz-container">
+        <h1>Quiz</h1>
+        <div id="score">Fragen beantwortet: 0 | Richtig: 0</div>
+        <div id="question">Lade Frage...</div>
+        <div id="answers"></div>
+        <div id="summary" style="display: none">
+          <h2>Quiz beendet!</h2>
+          <p id="results"></p>
+          <button onclick="restartQuiz()">Neustart</button>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/highscores">Highscores</a>
+      <a href="/add-question">Frage hinzufügen</a>
+      <a href="/upload-questions">Fragen importieren</a>
+    </nav>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+  </body>
+</html>
