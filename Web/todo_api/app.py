@@ -2,10 +2,14 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
+# Data
+
 todos = [
     {"id": 1, "task": "Python lernen", "done": False},
     {"id": 2, "task": "REST-API schreiben", "done": True}
 ]
+
+# Routes
 
 @app.route('/todos', methods=['GET'])
 def get_todos():
