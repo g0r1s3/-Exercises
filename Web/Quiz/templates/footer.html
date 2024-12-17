@@ -1,21 +1,15 @@
-<footer
-  style="
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #f1f1f1;
-    text-align: center;
-    padding: 10px;
-    border-top: 1px solid #ccc;
-  "
->
+<footer>
   <nav>
     <a href="/">Home</a>
     <a href="/highscores">Highscores</a>
-    <a href="/upload-questions">Fragen importieren</a>
+    {% if session.username == 'admin' %}
+    <a href="/upload-questions">Fragen hochladen</a>
+    {% endif %} {% if session.username %}
+    <a href="/logout">Logout</a>
+    {% endif %}
   </nav>
   <div>
-    {% if session.username %} Angemeldet: {{ session.username }} {% else %}
-    Nicht angemeldet {% endif %}
+    {% if session.username %} Angemeldet: <b> {{ session.username }} </b> {%
+    else %} Nicht angemeldet {% endif %}
   </div>
 </footer>

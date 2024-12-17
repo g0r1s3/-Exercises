@@ -7,8 +7,15 @@ async function register() {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password }),
   });
+
   const data = await response.json();
-  alert(data.message || data.error);
+
+  if (response.ok && data.redirect) {
+    // Weiterleitung zum Dashboard
+    window.location.href = data.redirect;
+  } else {
+    alert(data.error || "Registrierung fehlgeschlagen.");
+  }
 }
 
 async function login() {

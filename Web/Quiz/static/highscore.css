@@ -1,0 +1,44 @@
+body {
+  display: flex;
+  flex-direction: column; /* Stellt sicher, dass Kinder untereinander angezeigt werden */
+  justify-content: flex-start; /* Startet den Inhalt von oben */
+  align-items: center; /* Zentriert den Inhalt horizontal */
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f5efe7; /* Hintergrundfarbe aus deinem Design */
+}
+
+h1 {
+  margin: 20px 0; /* Abstand zum Inhalt */
+  color: #213555; /* Hauptfarbe */
+  font-size: 2.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  width: 50%;
+  box-shadow: 0 4px 10px rgba(33, 53, 85, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #fff;
+}
+
+th,
+td {
+  text-align: center;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #d8c4b6;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f5efe7;
+}
+
+tr:hover {
+  background-color: #ede9e3;
+}

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, session
+from flask import Flask, jsonify, request, render_template, session, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
 import random
@@ -68,6 +68,9 @@ def clear_session():
 
 @app.route('/')
 def index():
+    if 'username' in session:
+        # Wenn der User eingeloggt ist, leite auf quiz-dashboard weiter
+        return render_template('quiz_dashboard.html')
     return render_template('index.html')
 
 @app.route('/quiz-dashboard')
@@ -95,7 +98,11 @@ def register():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"message": "User registered successfully"}), 201
+    # Benutzer direkt anmelden
+    session['username'] = username
+
+    # Weiterleitung zum quiz-dashboard
+    return jsonify({"redirect": "/quiz-dashboard"}), 201
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -113,10 +120,12 @@ def login():
     else:
         return jsonify({"error": "Invalid credentials"}), 401
     
+
+
 @app.route('/logout', methods=['GET'])
 def logout():
-    session.pop('username', None)
-    return jsonify({"message": "Logout successful"}), 200    
+    session.pop('username', None)  # Benutzer aus der Session entfernen
+    return redirect(url_for('index'))  # Weiterleitung zur Login-Seite
 
 @app.route('/quiz', methods=['POST'])
 def add_question():
@@ -195,15 +204,15 @@ def highscores():
 
 @app.route('/upload-questions', methods=['GET'])
 def upload_questions_form():
-    if 'username' not in session:
-        return jsonify({"error": "User not logged in"}), 401
+    if 'username' not in session or session['username'] != 'admin':
+        return jsonify({"error": "Access denied. Admins only."}), 403
 
     return render_template('upload_questions.html')
 
 @app.route('/upload-questions', methods=['POST'])
 def handle_upload_questions():
-    if 'username' not in session:
-        return jsonify({"error": "User not logged in"}), 401
+    if 'username' not in session or session['username'] != 'admin':
+        return jsonify({"error": "Access denied. Admins only."}), 403
 
     file = request.files.get('file')
     if not file:
@@ -224,12 +233,12 @@ def handle_upload_questions():
         if Question.query.filter_by(question=question['question']).first():
             continue
 
-        # Neues Modell ohne "created_by", aber mit "region"
+        # Neues Modell mit Region
         new_question = Question(
             question=question['question'],
             options=",".join(question['options']),
             correct_answer=question['correct_answer'],
-            region=question['region']  # Region aus der Datei hinzufügen
+            region=question['region']
         )
         db.session.add(new_question)
         added_count += 1
