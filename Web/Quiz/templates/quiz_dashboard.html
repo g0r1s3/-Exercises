@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <div id="quiz-dashboard">
+      <h1>Quiz Dashboard</h1>
+      <p>Wähle eine Region aus:</p>
+      <!-- Die Region Cards bleiben hier -->
+      <div class="regions">
+        <!-- Europa -->
+        <div class="region-card">
+          <h2>Europa</h2>
+          <button onclick="startQuiz('Europa', 5)">5 Fragen</button>
+          <button onclick="startQuiz('Europa', 10)">10 Fragen</button>
+        </div>
+        <!-- Südamerika -->
+        <div class="region-card">
+          <h2>Südamerika</h2>
+          <button onclick="startQuiz('Südamerika', 5)">5 Fragen</button>
+          <button onclick="startQuiz('Südamerika', 10)">10 Fragen</button>
+        </div>
+        <!-- Asien -->
+        <div class="region-card">
+          <h2>Asien</h2>
+          <button onclick="startQuiz('Asien', 5)">5 Fragen</button>
+          <button onclick="startQuiz('Asien', 10)">10 Fragen</button>
+        </div>
+        <!-- Afrika -->
+        <div class="region-card">
+          <h2>Afrika</h2>
+          <button onclick="startQuiz('Afrika', 5)">5 Fragen</button>
+          <button onclick="startQuiz('Afrika', 10)">10 Fragen</button>
+        </div>
+        <!-- Nordamerika -->
+        <div class="region-card">
+          <h2>Nordamerika</h2>
+          <button onclick="startQuiz('Nordamerika', 5)">5 Fragen</button>
+          <button onclick="startQuiz('Nordamerika', 10)">10 Fragen</button>
+        </div>
+        <!-- Ozeanien -->
+        <div class="region-card">
+          <h2>Ozeanien</h2>
+          <button onclick="startQuiz('Ozeanien', 5)">5 Fragen</button>
+          <button onclick="startQuiz('Ozeanien', 10)">10 Fragen</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="quiz" style="display: none">
+      <h2 id="question">Frage</h2>
+      <div id="answers"></div>
+    </div>
+
+    {% include 'footer.html' %}
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='quiz.js') }}"></script>
+  </body>
+</html>

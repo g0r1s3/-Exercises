@@ -4,6 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import random
 import csv
 import json
+import os
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
@@ -11,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///quiz.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
-app.secret_key = 'supersecretkey123'
+app.secret_key = 'os.urandom(24)'
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -28,9 +29,9 @@ class User(db.Model):
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     question = db.Column(db.String(255), nullable=False)
-    options = db.Column(db.String(255), nullable=False)  # Antworten als CSV
+    options = db.Column(db.String(255), nullable=False)
     correct_answer = db.Column(db.String(255), nullable=False)
-    created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # Verweis auf User
+    region = db.Column(db.String(50), nullable=False)  # Neues Feld für die Region
 
 with app.app_context():
     db.create_all()
@@ -42,7 +43,8 @@ def parse_csv(file):
         questions.append({
             'question': row['question'],
             'options': [row['option1'], row['option2'], row['option3'], row['option4']],
-            'correct_answer': row['correct_answer']
+            'correct_answer': row['correct_answer'],
+            'region': row['region']  # Region hinzufügen
         })
     return questions
 
@@ -53,13 +55,26 @@ def parse_json(file):
         questions.append({
             'question': item['question'],
             'options': item['options'],
-            'correct_answer': item['correct_answer']
+            'correct_answer': item['correct_answer'],
+            'region': item['region']  # Region hinzufügen
         })
     return questions
+
+@app.before_request
+def clear_session():
+    if not hasattr(app, 'session_cleared'):
+        session.clear()
+        app.session_cleared = True  # Flag setzen, um mehrfaches Leeren zu verhindern
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/quiz-dashboard')
+def quiz_dashboard():
+    if 'username' not in session:
+        return jsonify({"error": "User not logged in"}), 401
+    return render_template('quiz_dashboard.html')
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -91,11 +106,10 @@ def login():
     if not username or not password:
         return jsonify({"error": "Username and password required"}), 400
 
-    # Benutzer aus der Datenbank abrufen
     user = User.query.filter_by(username=username).first()
     if user and user.check_password(password):
-        session['username'] = username  # Session speichern
-        return jsonify({"message": "Login successful"}), 200
+        session['username'] = username
+        return jsonify({"redirect": "/quiz-dashboard"}), 200  # Weiterleitung hinzufügen
     else:
         return jsonify({"error": "Invalid credentials"}), 401
     
@@ -123,20 +137,34 @@ def add_question():
     return jsonify({"message": "Question added successfully!"}), 201
 
 @app.route('/quiz', methods=['GET'])
-def get_random_question():
+def get_quiz_questions():
     if 'username' not in session:
         return jsonify({"error": "User not logged in"}), 401
 
-    # Eine zufällige Frage aus der Datenbank abrufen
-    question = Question.query.order_by(db.func.random()).first()
-    if not question:
-        return jsonify({"error": "No questions available"}), 404
+    # Parameter aus der Anfrage holen
+    region = request.args.get('region')
+    num_questions = int(request.args.get('questions', 5))  # Standard: 5 Fragen
 
-    return jsonify({
-        "id": question.id,
-        "question": question.question,
-        "options": question.options.split(',')
-    })
+    if not region:
+        return jsonify({"error": "Region is required"}), 400
+
+    # Zufällige Fragen aus der entsprechenden Region abrufen
+    questions = Question.query.filter_by(region=region).order_by(db.func.random()).limit(num_questions).all()
+
+    if not questions:
+        return jsonify({"error": "No questions available for this region"}), 404
+
+    # Fragen formatieren
+    formatted_questions = []
+    for question in questions:
+        formatted_questions.append({
+            "id": question.id,
+            "question": question.question,
+            "options": question.options.split(','),
+            "correct_answer": question.correct_answer
+        })
+
+    return jsonify(formatted_questions)
 
 @app.route('/quiz/<int:question_id>', methods=['POST'])
 def check_answer(question_id):
@@ -158,64 +186,10 @@ def check_answer(question_id):
     else:
         return jsonify({"correct": False, "message": "Wrong answer!"})
 
-@app.route('/my-questions', methods=['GET'])
-def my_questions():
-    if 'username' not in session:
-        return jsonify({"error": "User not logged in"}), 401
-
-    user = User.query.filter_by(username=session['username']).first()
-    questions = Question.query.filter_by(created_by=user.id).all()
-    return jsonify([{
-        "id": q.id,
-        "question": q.question,
-        "options": q.options.split(','),
-        "correct_answer": q.correct_answer
-    } for q in questions])
-
 @app.route('/highscores', methods=['GET'])
 def highscores():
     users = User.query.order_by(User.score.desc()).all()  # Nach Score sortieren
     return render_template('highscores.html', users=users)
-
-# Frage hinzufügen
-@app.route('/add-question', methods=['GET'])
-def add_question_form():
-    if 'username' not in session:
-        return jsonify({"error": "User not logged in"}), 401
-
-    return render_template('add_question.html')
-
-@app.route('/add-question', methods=['POST'])
-def handle_add_question():
-    if 'username' not in session:
-        return jsonify({"error": "User not logged in"}), 401
-
-    # Daten aus dem Formular abrufen
-    question_text = request.form.get('question')
-    options = request.form.getlist('options[]')
-    correct_index = int(request.form.get('correct_answer'))
-
-    if not question_text or len(options) != 4:
-        return jsonify({"error": "Invalid input"}), 400
-
-    # Validierung: Der korrekte Index muss zwischen 0 und 3 liegen
-    if correct_index < 0 or correct_index >= len(options):
-        return jsonify({"error": "Invalid correct answer"}), 400
-
-    # Den aktuell eingeloggten Nutzer abrufen
-    user = User.query.filter_by(username=session['username']).first()
-
-    # Frage speichern
-    new_question = Question(
-        question=question_text,
-        options=",".join(options),
-        correct_answer=options[correct_index],
-        created_by=user.id
-    )
-    db.session.add(new_question)
-    db.session.commit()
-
-    return jsonify({"message": "Question added successfully!"}), 201
 
 # Upload Questions
 
@@ -243,8 +217,6 @@ def handle_upload_questions():
     else:
         return jsonify({"error": "Unsupported file format. Please upload a CSV or JSON file."}), 400
 
-    # Füge die Fragen in die Datenbank ein
-    user = User.query.filter_by(username=session['username']).first()
     added_count = 0  # Zähler für erfolgreich importierte Fragen
 
     for question in questions:
@@ -252,11 +224,12 @@ def handle_upload_questions():
         if Question.query.filter_by(question=question['question']).first():
             continue
 
+        # Neues Modell ohne "created_by", aber mit "region"
         new_question = Question(
             question=question['question'],
             options=",".join(question['options']),
             correct_answer=question['correct_answer'],
-            created_by=user.id
+            region=question['region']  # Region aus der Datei hinzufügen
         )
         db.session.add(new_question)
         added_count += 1

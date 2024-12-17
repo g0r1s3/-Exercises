@@ -32,12 +32,8 @@
         </div>
       </div>
     </div>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/highscores">Highscores</a>
-      <a href="/add-question">Frage hinzufügen</a>
-      <a href="/upload-questions">Fragen importieren</a>
-    </nav>
+
+    {% include 'footer.html' %}
     <script src="{{ url_for('static', filename='script.js') }}"></script>
   </body>
 </html>

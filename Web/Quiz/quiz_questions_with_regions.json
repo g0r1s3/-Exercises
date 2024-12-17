@@ -1,0 +1,362 @@
+[
+  {
+    "question": "Was ist die Hauptstadt von Frankreich?",
+    "options": ["Kuala Lumpur", "Oslo", "Tokio", "Paris"],
+    "correct_answer": "Paris",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Deutschland?",
+    "options": ["Berlin", "Quito", "Rabat", "Funafuti"],
+    "correct_answer": "Berlin",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Italien?",
+    "options": ["Riad", "Rom", "Tokio", "Wellington"],
+    "correct_answer": "Rom",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Spanien?",
+    "options": ["Canberra", "Guatemala-Stadt", "Madrid", "Kairo"],
+    "correct_answer": "Madrid",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Österreich?",
+    "options": ["Rom", "Seoul", "Lissabon", "Wien"],
+    "correct_answer": "Wien",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Schweiz?",
+    "options": ["Bern", "Kingston", "Ngerulmud", "Paris"],
+    "correct_answer": "Bern",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Portugal?",
+    "options": ["Lissabon", "Port Moresby", "Abuja", "Montevideo"],
+    "correct_answer": "Lissabon",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Polen?",
+    "options": ["Bern", "Washington D.C.", "Rom", "Warschau"],
+    "correct_answer": "Warschau",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Schweden?",
+    "options": ["Nairobi", "Stockholm", "San José", "Hanoi"],
+    "correct_answer": "Stockholm",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Norwegen?",
+    "options": ["Pretoria", "Kampala", "Oslo", "Bern"],
+    "correct_answer": "Oslo",
+    "region": "Europa"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Brasilien?",
+    "options": ["Brasília", "Guatemala-Stadt", "Nukuʻalofa", "Singapur"],
+    "correct_answer": "Brasília",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Argentinien?",
+    "options": ["Stockholm", "Buenos Aires", "Port Vila", "Mexiko-Stadt"],
+    "correct_answer": "Buenos Aires",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Chile?",
+    "options": ["Santiago", "Berlin", "San José", "Kairo"],
+    "correct_answer": "Santiago",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Kolumbien?",
+    "options": ["Kingston", "Oslo", "Bogotá", "Singapur"],
+    "correct_answer": "Bogotá",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Peru?",
+    "options": ["Mexiko-Stadt", "Bern", "Lima", "Kingston"],
+    "correct_answer": "Lima",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Uruguay?",
+    "options": ["Managua", "Berlin", "Jakarta", "Montevideo"],
+    "correct_answer": "Montevideo",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Paraguay?",
+    "options": ["Nairobi", "Asunción", "Mexiko-Stadt", "Tarawa"],
+    "correct_answer": "Asunción",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Bolivien?",
+    "options": ["Sucre", "Quito", "Havanna", "Funafuti"],
+    "correct_answer": "Sucre",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Ecuador?",
+    "options": ["Peking", "Quito", "San José", "Hanoi"],
+    "correct_answer": "Quito",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Venezuela?",
+    "options": ["Caracas", "Montevideo", "Madrid", "Kairo"],
+    "correct_answer": "Caracas",
+    "region": "Südamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von China?",
+    "options": ["Lima", "Peking", "Bangkok", "Hanoi"],
+    "correct_answer": "Peking",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Japan?",
+    "options": ["Accra", "Tokio", "Ottawa", "Neu-Delhi"],
+    "correct_answer": "Tokio",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Indien?",
+    "options": ["Neu-Delhi", "Asunción", "Guatemala-Stadt", "Stockholm"],
+    "correct_answer": "Neu-Delhi",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Südkorea?",
+    "options": ["Seoul", "Managua", "Rom", "Nairobi"],
+    "correct_answer": "Seoul",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Thailand?",
+    "options": ["Nairobi", "Stockholm", "Havanna", "Bangkok"],
+    "correct_answer": "Bangkok",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Vietnam?",
+    "options": ["Wellington", "Santiago", "Singapur", "Hanoi"],
+    "correct_answer": "Hanoi",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Malaysia?",
+    "options": ["Suva", "Wien", "Ottawa", "Kuala Lumpur"],
+    "correct_answer": "Kuala Lumpur",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Indonesien?",
+    "options": ["Rom", "Neu-Delhi", "Jakarta", "Kairo"],
+    "correct_answer": "Jakarta",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Singapur?",
+    "options": ["Tunis", "Tokio", "Port Vila", "Singapur"],
+    "correct_answer": "Singapur",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Saudi-Arabien?",
+    "options": ["Pretoria", "Warschau", "Port Vila", "Riad"],
+    "correct_answer": "Riad",
+    "region": "Asien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Nigeria?",
+    "options": ["Pretoria", "Accra", "Abuja", "Nukuʻalofa"],
+    "correct_answer": "Abuja",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Ägypten?",
+    "options": ["Riad", "Paris", "Bangkok", "Kairo"],
+    "correct_answer": "Kairo",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Südafrika?",
+    "options": ["Pretoria", "Bangkok", "Kingston", "Riad"],
+    "correct_answer": "Pretoria",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Kenia?",
+    "options": ["Nairobi", "San José", "Panama-Stadt", "Algier"],
+    "correct_answer": "Nairobi",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Marokko?",
+    "options": ["Tarawa", "Kampala", "Warschau", "Rabat"],
+    "correct_answer": "Rabat",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Tunesien?",
+    "options": ["Tunis", "Canberra", "Montevideo", "Wellington"],
+    "correct_answer": "Tunis",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Ghana?",
+    "options": ["Accra", "Washington D.C.", "Wien", "Riad"],
+    "correct_answer": "Accra",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Uganda?",
+    "options": ["Seoul", "Kampala", "Havanna", "Nairobi"],
+    "correct_answer": "Kampala",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Algerien?",
+    "options": ["Seoul", "Bern", "Stockholm", "Algier"],
+    "correct_answer": "Algier",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Äthiopien?",
+    "options": ["Kuala Lumpur", "Addis Abeba", "Apia", "Singapur"],
+    "correct_answer": "Addis Abeba",
+    "region": "Afrika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von USA?",
+    "options": ["Neu-Delhi", "Washington D.C.", "Asunción", "Riad"],
+    "correct_answer": "Washington D.C.",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Kanada?",
+    "options": ["Peking", "Guatemala-Stadt", "Ottawa", "Hanoi"],
+    "correct_answer": "Ottawa",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Mexiko?",
+    "options": ["Seoul", "Mexiko-Stadt", "Santiago", "Tokio"],
+    "correct_answer": "Mexiko-Stadt",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Kuba?",
+    "options": ["Quito", "Havanna", "Rabat", "Funafuti"],
+    "correct_answer": "Havanna",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Jamaika?",
+    "options": ["Warschau", "Montevideo", "Kingston", "Hanoi"],
+    "correct_answer": "Kingston",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Honduras?",
+    "options": ["Accra", "Tegucigalpa", "Managua", "Funafuti"],
+    "correct_answer": "Tegucigalpa",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Nicaragua?",
+    "options": ["Bogotá", "Managua", "Havanna", "Ottawa"],
+    "correct_answer": "Managua",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Guatemala?",
+    "options": ["Washington D.C.", "Guatemala-Stadt", "Paris", "Hanoi"],
+    "correct_answer": "Guatemala-Stadt",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Costa Rica?",
+    "options": ["Pretoria", "San José", "Tokio", "Montevideo"],
+    "correct_answer": "San José",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Panama?",
+    "options": ["Panama-Stadt", "Buenos Aires", "San José", "Bangkok"],
+    "correct_answer": "Panama-Stadt",
+    "region": "Nordamerika"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Australien?",
+    "options": ["Wellington", "Kuala Lumpur", "Ottawa", "Canberra"],
+    "correct_answer": "Canberra",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Neuseeland?",
+    "options": ["Pretoria", "Hanoi", "Santiago", "Wellington"],
+    "correct_answer": "Wellington",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Fidschi?",
+    "options": ["Suva", "Tarawa", "Tunis", "Algier"],
+    "correct_answer": "Suva",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Papua-Neuguinea?",
+    "options": ["Tegucigalpa", "Port Moresby", "Paris", "Algier"],
+    "correct_answer": "Port Moresby",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Samoa?",
+    "options": ["Pretoria", "Oslo", "Apia", "Bangkok"],
+    "correct_answer": "Apia",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Vanuatu?",
+    "options": ["Suva", "Abuja", "Port Vila", "Rabat"],
+    "correct_answer": "Port Vila",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Tonga?",
+    "options": ["Brasília", "Sucre", "Algier", "Nukuʻalofa"],
+    "correct_answer": "Nukuʻalofa",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Palau?",
+    "options": ["Lima", "Abuja", "Ngerulmud", "Kuala Lumpur"],
+    "correct_answer": "Ngerulmud",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Kiribati?",
+    "options": ["Tarawa", "Addis Abeba", "San José", "Funafuti"],
+    "correct_answer": "Tarawa",
+    "region": "Ozeanien"
+  },
+  {
+    "question": "Was ist die Hauptstadt von Tuvalu?",
+    "options": ["Tarawa", "Kampala", "Canberra", "Funafuti"],
+    "correct_answer": "Funafuti",
+    "region": "Ozeanien"
+  }
+]
