@@ -2,6 +2,14 @@ let quizData = [];
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]]; // Elemente tauschen
+  }
+  return array;
+}
+
 async function startQuiz(region, questionCount) {
   try {
     const response = await fetch(
@@ -39,7 +47,10 @@ function loadQuestion() {
   questionElement.textContent = currentQuestion.question;
   answersElement.innerHTML = "";
 
-  currentQuestion.options.forEach((option) => {
+  // Antworten zufällig mischen
+  const shuffledOptions = shuffleArray([...currentQuestion.options]);
+
+  shuffledOptions.forEach((option) => {
     const button = document.createElement("button");
     button.textContent = option;
     button.onclick = () =>
