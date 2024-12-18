@@ -1,0 +1,17 @@
+{% extends "header.html" %} {% block title %}Login{% endblock %} {% block
+content %}
+<main>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form method="POST" class="login-form">
+      <input type="email" name="email" placeholder="E-Mail" required />
+      <input type="password" name="password" placeholder="Passwort" required />
+      <button type="submit">Einloggen</button>
+    </form>
+    <p>
+      Noch nicht registriert?
+      <a href="{{ url_for('register') }}">Hier registrieren</a>
+    </p>
+  </div>
+</main>
+{% endblock %}

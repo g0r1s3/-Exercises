@@ -1,0 +1,199 @@
+/* Farben als Variablen */
+:root {
+  --blau-dunkel: #001f3f;
+  --graublau: #3d5a80;
+  --kontrast: #ee6c4d;
+  --text-hell: #e0fbfc; /* Für hellen Text */
+}
+
+/* Basis-Reset und Body-Layout */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--blau-dunkel);
+  color: var(--text-hell);
+}
+
+/* Header */
+header {
+  background-color: var(--graublau);
+  padding: 1rem;
+  text-align: center;
+  color: var(--text-hell);
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Haupt-Content */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center; /* Vertikal zentrieren */
+  padding: 1rem;
+}
+
+/* Footer */
+footer {
+  background-color: var(--graublau);
+  color: var(--text-hell);
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 2px solid var(--kontrast);
+  flex-shrink: 0;
+}
+
+footer .user-info {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+footer .links a {
+  color: var(--kontrast);
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+
+footer .links a:hover {
+  text-decoration: underline;
+}
+
+/* Links */
+a {
+  color: var(--kontrast);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-hell);
+}
+
+/* Input-Felder */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  max-width: 95%;
+  padding: 10px 4px; /* Mehr Padding horizontal */
+  margin: 10px 2px;
+  border: 2px solid var(--graublau);
+  border-radius: 5px;
+  background-color: var(--blau-dunkel);
+  color: var(--text-hell);
+  font-size: 1rem;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--kontrast);
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  margin: 10px 0;
+  font-size: 1rem;
+  color: var(--text-hell);
+  background-color: var(--graublau);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--kontrast);
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: var(--text-hell);
+}
+
+/* Login-Container */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Zentriert den Inhalt horizontal */
+  justify-content: center; /* Zentriert den Inhalt vertikal */
+  margin: 2rem auto;
+  padding: 2rem;
+  max-width: 400px;
+  background-color: var(--blau-dunkel);
+  border: 2px solid var(--graublau);
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Login-Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Abstand zwischen den Inputfeldern */
+  width: 100%;
+  padding: 0 1rem; /* Horizontaler Abstand links und rechts */
+}
+
+.login-container h2 {
+  color: var(--text-hell);
+  margin-bottom: 1rem;
+}
+
+.login-container p {
+  color: var(--text-hell);
+  margin-top: 1rem;
+}
+
+.login-container a {
+  color: var(--kontrast);
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+
+/* Flash-Nachrichten */
+.flash-container {
+  width: 100%;
+  margin: 1rem auto;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+.flash-message {
+  display: inline-block;
+  background-color: var(--graublau); /* Dezente Hintergrundfarbe */
+  color: var(--text-hell); /* Sanfte Textfarbe */
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 0.9rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Optional: Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
