@@ -1,8 +1,6 @@
 {% extends "header.html" %} {% block title %}Deine Tagebucheinträge{% endblock
 %} {% block content %}
 <main>
-  <!-- <h2>Deine Tagebucheinträge</h2> -->
-
   {% if entries %}
   <ul class="entry-list">
     {% for entry in entries %}
@@ -11,24 +9,18 @@
         <span class="entry-date"
           >{{ entry.created_at.strftime('%d.%m.%Y %H:%M') }}</span
         >
-        <span class="entry-mood"
-          >Stimmung: {{ entry.entry.split('Stimmung: ')[1].split(',')[0]
-          }}</span
-        >
-        <span class="entry-energy"
-          >Energie: {{ entry.entry.split('Energie: ')[1].split('\n')[0] }}</span
-        >
+        <span class="entry-mood">Stimmung: {{ entry.mood }}</span>
+        <span class="entry-energy">Energie: {{ entry.energy }}</span>
       </div>
       <div class="entry-content">
         <p><strong>Eintrag:</strong></p>
-        <p>{{ entry.entry.split("\n")[0] }}</p>
+        <p>{{ entry.entry }}</p>
       </div>
+      {% if entry.gratitude %}
       <div class="entry-gratitude">
-        <p>
-          <strong>Dankbarkeit:</strong> {{ entry.entry.split('Dankbarkeit: ')[1]
-          }}
-        </p>
+        <p><strong>Dankbarkeit:</strong> {{ entry.gratitude }}</p>
       </div>
+      {% endif %}
       <form
         method="POST"
         action="{{ url_for('delete_entry', entry_id=entry.id) }}"

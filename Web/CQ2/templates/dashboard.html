@@ -2,12 +2,27 @@
 content %}
 <main class="dashboard">
   <!-- Sektion 1: Persönliches Profil -->
+  <!-- Sektion 1: Persönliches Profil -->
   <section class="profile">
     <h2>Willkommen, {{ username }}!</h2>
     <div class="profile-info">
       <p><strong>Tagebucheinträge:</strong> {{ journal_count }}</p>
       <p><strong>Meditationen abgeschlossen:</strong> {{ meditation_count }}</p>
       <p><strong>Streak:</strong> {{ streak }} Tage</p>
+    </div>
+
+    <!-- Liniendiagramme für Stimmung und Energie -->
+    <div class="charts">
+      <canvas
+        id="mood-chart"
+        data-mood-levels="{{ mood_levels | tojson | safe }}"
+        data-labels="{{ dates | join(',') }}"
+      ></canvas>
+      <canvas
+        id="energy-chart"
+        data-energy-levels="{{ energy_levels | tojson | safe }}"
+        data-labels="{{ dates | join(',') }}"
+      ></canvas>
     </div>
   </section>
 
@@ -40,4 +55,6 @@ content %}
     </div>
   </section>
 </main>
+<!-- Externes JavaScript für die Charts -->
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
 {% endblock %}

@@ -3,7 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
-import os
+import os, re
+
+
 
 UPLOAD_FOLDER = os.path.join("static", "audio")
 ALLOWED_EXTENSIONS = {'mp3', 'wav', 'ogg'}
@@ -54,6 +56,9 @@ class JournalEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     entry = db.Column(db.Text, nullable=False)
+    mood = db.Column(db.Integer, nullable=True)  # Stimmung als Zahl (1-10)
+    energy = db.Column(db.Integer, nullable=True)  # Energielevel als Zahl (1-10)
+    gratitude = db.Column(db.String(255), nullable=True)  # Optionales Feld für Dankbarkeit
     created_at = db.Column(db.DateTime, default=db.func.current_timestamp())
     # Beziehung zu User
     user = db.relationship('User', backref=db.backref('journal_entries', lazy=True))
@@ -134,20 +139,24 @@ def logout():
     flash("Du wurdest erfolgreich ausgeloggt.")
     return redirect(url_for("login"))
 
+import re
+
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    journal_count = JournalEntry.query.filter_by(user_id=current_user.id).count()
-    meditation_count = CompletedMeditation.query.filter_by(user_id=current_user.id).count()
-    streak = UserStats.query.filter_by(user_id=current_user.id).first().streak if UserStats.query.filter_by(user_id=current_user.id).first() else 0
-    achievements = Achievement.query.filter_by(user_id=current_user.id).all()
+    journal_entries = JournalEntry.query.filter_by(user_id=current_user.id).order_by(JournalEntry.created_at.desc()).limit(10).all()
+    mood_levels = [entry.mood for entry in journal_entries if entry.mood is not None]
+    energy_levels = [entry.energy for entry in journal_entries if entry.energy is not None]
+    dates = [entry.created_at.strftime('%d.%m.%Y') for entry in journal_entries]
     return render_template(
         "dashboard.html",
         username=current_user.username,
-        journal_count=journal_count,
-        meditation_count=meditation_count,
-        streak=streak,
-        achievements=achievements,
+        journal_count=len(journal_entries),
+        meditation_count=CompletedMeditation.query.filter_by(user_id=current_user.id).count(),
+        streak=0,
+        mood_levels=mood_levels[::-1],
+        energy_levels=energy_levels[::-1],
+        dates=dates[::-1],
     )
 
 @app.route("/journal", methods=["GET", "POST"])
@@ -156,14 +165,17 @@ def journal():
     if request.method == "POST":
         # Formular-Daten auslesen
         entry = request.form["entry"]
-        mood = request.form["mood"]
-        energy = request.form["energy"]
+        mood = int(request.form["mood"])
+        energy = int(request.form["energy"])
         gratitude = request.form["gratitude"]
 
         # Neuen Tagebucheintrag erstellen
         new_entry = JournalEntry(
             user_id=current_user.id,
-            entry=entry + f"\nStimmung: {mood}, Energie: {energy}\nDankbarkeit: {gratitude}"
+            entry=entry,
+            mood=mood,
+            energy=energy,
+            gratitude=gratitude
         )
         db.session.add(new_entry)
         db.session.commit()

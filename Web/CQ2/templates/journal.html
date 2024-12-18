@@ -2,8 +2,9 @@
 block content %}
 <main>
   <form method="POST" class="journal-form">
-    <!-- Freier Textbereich -->
     <h2>Neuer Tagebucheintrag</h2>
+
+    <!-- Freier Textbereich -->
     <label for="entry">Dein Eintrag:</label>
     <textarea
       id="entry"
@@ -13,33 +14,40 @@ block content %}
       required
     ></textarea>
 
+    <!-- Stimmung (Slider mit Vorschau) -->
     <label for="mood"
       >Wie ist deine Stimmung? (1 = Schlecht, 10 = Hervorragend)</label
     >
-    <input
-      type="range"
-      id="mood"
-      name="mood"
-      min="1"
-      max="10"
-      value="5"
-      oninput="moodOutput.value = this.value"
-    />
-    <output id="moodOutput">5</output>
+    <div class="slider-container">
+      <input
+        type="range"
+        id="mood"
+        name="mood"
+        min="1"
+        max="10"
+        value="5"
+        oninput="moodOutput.value = this.value"
+      />
+      <output id="moodOutput">5</output>
+    </div>
 
+    <!-- Energie (Slider mit Vorschau) -->
     <label for="energy"
       >Wie ist dein Energielevel? (1 = Erschöpft, 10 = Voller Energie)</label
     >
-    <input
-      type="range"
-      id="energy"
-      name="energy"
-      min="1"
-      max="10"
-      value="5"
-      oninput="energyOutput.value = this.value"
-    />
-    <output id="energyOutput">5</output>
+    <div class="slider-container">
+      <input
+        type="range"
+        id="energy"
+        name="energy"
+        min="1"
+        max="10"
+        value="5"
+        oninput="energyOutput.value = this.value"
+      />
+      <output id="energyOutput">5</output>
+    </div>
+
     <!-- Dankbarkeit (Kurze Frage) -->
     <label for="gratitude">Wofür bist du heute dankbar?</label>
     <input
@@ -47,7 +55,6 @@ block content %}
       id="gratitude"
       name="gratitude"
       placeholder="Ein kurzer Satz genügt."
-      required
     />
 
     <!-- Absenden -->
