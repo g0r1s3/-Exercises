@@ -1,7 +1,43 @@
 {% extends "header.html" %} {% block title %}Dashboard{% endblock %} {% block
 content %}
-<main>
-  <h2>Willkommen, {{ username }}!</h2>
-  <p>Hier ist dein persönliches Dashboard.</p>
+<main class="dashboard">
+  <!-- Sektion 1: Persönliches Profil -->
+  <section class="profile">
+    <h2>Willkommen, {{ username }}!</h2>
+    <div class="profile-info">
+      <p><strong>Tagebucheinträge:</strong> {{ journal_count }}</p>
+      <p><strong>Meditationen abgeschlossen:</strong> {{ meditation_count }}</p>
+      <p><strong>Streak:</strong> {{ streak }} Tage</p>
+    </div>
+  </section>
+
+  <!-- Sektion 2: Aktionsleiste -->
+  <section class="actions">
+    <h2>Was möchtest du tun?</h2>
+    <div class="action-buttons">
+      <a href="{{ url_for('meditations') }}" class="button"
+        >Meditationen durchsuchen</a
+      >
+      <a href="{{ url_for('journal') }}" class="button">Tagebuch hinzufügen</a>
+    </div>
+  </section>
+
+  <!-- Sektion 3: Achievements -->
+  <section class="achievements">
+    <h2>Deine Achievements</h2>
+    <div class="achievement-list">
+      {% for achievement in achievements %}
+      <div class="achievement">
+        <h3>{{ achievement.title }}</h3>
+        <p>{{ achievement.description }}</p>
+        <p>
+          <em>Erreicht am: {{ achievement.earned_at.strftime('%d.%m.%Y') }}</em>
+        </p>
+      </div>
+      {% else %}
+      <p>Du hast noch keine Achievements erreicht.</p>
+      {% endfor %}
+    </div>
+  </section>
 </main>
 {% endblock %}

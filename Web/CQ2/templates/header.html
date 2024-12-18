@@ -35,7 +35,8 @@
         <a href="/impressum">Impressum</a> |
         <a href="/datenschutz">Datenschutz</a>
         {% if current_user.is_authenticated %} |
-        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a> |
+        <a href="{{ url_for('journal_entries') }}">Meine Einträge</a>
         {% endif %}
       </div>
     </footer>

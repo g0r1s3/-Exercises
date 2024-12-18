@@ -1,0 +1,36 @@
+{% extends "header.html" %} {% block title %}Meditation erstellen{% endblock %}
+{% block content %}
+<main>
+  <h2>Neue Meditation hinzufügen</h2>
+  <form method="POST" enctype="multipart/form-data" class="meditation-form">
+    <label for="title">Titel:</label>
+    <input
+      type="text"
+      id="title"
+      name="title"
+      placeholder="Titel der Meditation"
+      required
+    />
+
+    <label for="description">Beschreibung:</label>
+    <textarea
+      id="description"
+      name="description"
+      rows="4"
+      placeholder="Beschreibe die Meditation..."
+      required
+    ></textarea>
+
+    <label for="audio_file">Audiodatei hochladen (MP3, WAV, OGG):</label>
+    <input
+      type="file"
+      id="audio_file"
+      name="audio_file"
+      accept=".mp3,.wav,.ogg"
+      required
+    />
+
+    <button type="submit">Meditation erstellen</button>
+  </form>
+</main>
+{% endblock %}

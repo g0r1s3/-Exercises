@@ -1,0 +1,46 @@
+{% extends "header.html" %} {% block title %}Deine Tagebucheinträge{% endblock
+%} {% block content %}
+<main>
+  <!-- <h2>Deine Tagebucheinträge</h2> -->
+
+  {% if entries %}
+  <ul class="entry-list">
+    {% for entry in entries %}
+    <li class="entry">
+      <div class="entry-header">
+        <span class="entry-date"
+          >{{ entry.created_at.strftime('%d.%m.%Y %H:%M') }}</span
+        >
+        <span class="entry-mood"
+          >Stimmung: {{ entry.entry.split('Stimmung: ')[1].split(',')[0]
+          }}</span
+        >
+        <span class="entry-energy"
+          >Energie: {{ entry.entry.split('Energie: ')[1].split('\n')[0] }}</span
+        >
+      </div>
+      <div class="entry-content">
+        <p><strong>Eintrag:</strong></p>
+        <p>{{ entry.entry.split("\n")[0] }}</p>
+      </div>
+      <div class="entry-gratitude">
+        <p>
+          <strong>Dankbarkeit:</strong> {{ entry.entry.split('Dankbarkeit: ')[1]
+          }}
+        </p>
+      </div>
+      <form
+        method="POST"
+        action="{{ url_for('delete_entry', entry_id=entry.id) }}"
+        class="delete-form"
+      >
+        <button type="submit" class="delete-button">Delete</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p>Du hast noch keine Tagebucheinträge erstellt.</p>
+  {% endif %}
+</main>
+{% endblock %}

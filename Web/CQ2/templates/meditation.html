@@ -1,0 +1,18 @@
+{% extends "header.html" %} {% block title %}Meditation - {{ meditation.title
+}}{% endblock %} {% block content %}
+<main class="meditation-page-container">
+  <div class="meditation-card-large">
+    <h2>{{ meditation.title }}</h2>
+    <p>{{ meditation.description }}</p>
+    <div class="meditation-audio-container">
+      <audio controls>
+        <source
+          src="{{ url_for('static', filename=meditation.audio_file) }}"
+          type="audio/mpeg"
+        />
+        Dein Browser unterstützt das Abspielen dieser Datei nicht.
+      </audio>
+    </div>
+  </div>
+</main>
+{% endblock %}

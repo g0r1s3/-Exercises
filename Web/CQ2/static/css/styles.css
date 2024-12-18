@@ -94,6 +94,51 @@ textarea:focus {
   border-color: var(--kontrast);
 }
 
+/* Slider-Styling */
+input[type="range"] {
+  -webkit-appearance: none; /* Entfernt das Standard-Design */
+  width: 100%;
+  height: 8px;
+  background: var(--graublau);
+  border-radius: 5px;
+  outline: none;
+  transition: background 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--kontrast); /* Thumb behält seine Farbe */
+  border: 2px solid var(--graublau); /* Optional: Kontrastierter Rand */
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--kontrast);
+  border: 2px solid var(--graublau);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+input[type="range"]:hover,
+input[type="range"]:focus {
+  background: var(--graublau); /* Hintergrund bleibt konstant */
+}
+
+output {
+  display: block; /* Damit der Wert unter dem Slider steht */
+  text-align: center;
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: var(--text-hell);
+  font-weight: bold;
+}
+
 /* Buttons */
 button {
   padding: 10px 20px;
@@ -196,4 +241,311 @@ label {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Journal-Formular */
+.journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.journal-form label {
+  font-weight: bold;
+  color: var(--text-hell);
+}
+
+.journal-form textarea,
+.journal-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid var(--graublau);
+  border-radius: 5px;
+  background-color: var(--blau-dunkel);
+  color: var(--text-hell);
+}
+
+.journal-form input[type="range"] {
+  width: 100%;
+}
+
+.journal-form button {
+  padding: 10px 20px;
+  background-color: var(--graublau);
+  color: var(--text-hell);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.journal-form button:hover {
+  background-color: var(--kontrast);
+}
+
+/* Liste der Tagebucheinträge */
+.entry-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.entry {
+  background-color: var(--graublau);
+  color: var(--text-hell);
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--kontrast);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.entry-header span {
+  margin-right: 1rem;
+}
+
+.entry-content p {
+  margin: 0.5rem 0;
+}
+
+.entry-gratitude {
+  margin-top: 1rem;
+  font-style: italic;
+  color: var(--kontrast);
+}
+
+/* Dankbarkeit-Bereich */
+.entry-gratitude p {
+  color: var(--text-hell); /* Weißer Text, gleiche Farbe wie der Eintrag */
+  margin: 0.5rem 0;
+}
+
+.entry p {
+  margin: 0;
+}
+
+/* Delete-Button */
+.delete-form {
+  text-align: right; /* Button nach rechts ausrichten */
+  margin-top: 0.2rem;
+}
+
+.delete-button {
+  background: none;
+  border: none;
+  color: var(--kontrast);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.1s ease-in-out;
+}
+
+.delete-button:hover {
+  color: var(--text-hell); /* Auffälliges Rot beim Hovern */
+  text-decoration: underline;
+}
+
+/* Meditation upload */
+
+.meditation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.meditation-form label {
+  font-weight: bold;
+  color: var(--text-hell);
+}
+
+.meditation-form input,
+.meditation-form textarea {
+  padding: 10px;
+  border: 2px solid var(--graublau);
+  border-radius: 5px;
+  background-color: var(--blau-dunkel);
+  color: var(--text-hell);
+}
+
+.meditation-form button {
+  padding: 10px 20px;
+  background-color: var(--kontrast);
+  color: var(--text-hell);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.meditation-form button:hover {
+  background-color: #ff4d4d;
+}
+
+/* Dashboard-Design */
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+section {
+  background-color: var(--graublau);
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+  margin-bottom: 1rem;
+  color: var(--text-hell);
+}
+
+.profile-info p {
+  margin: 0.5rem 0;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.action-buttons .button {
+  background-color: var(--kontrast);
+  color: var(--text-hell);
+  padding: 0.8rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.action-buttons .button:hover {
+  background-color: #ff4d4d;
+}
+
+.achievement-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.achievement {
+  background-color: var(--blau-dunkel);
+  padding: 1rem;
+  border-radius: 5px;
+  color: var(--text-hell);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.achievement h3 {
+  margin-bottom: 0.5rem;
+  color: var(--kontrast);
+}
+
+/* Meditationsauswahl */
+/* Übersicht: Meditationsgrid */
+.meditations-overview {
+  padding: 1.5rem;
+}
+
+.meditations-overview h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.meditation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.meditation-card {
+  background-color: var(--graublau);
+  color: var(--text-hell);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.meditation-card h3 {
+  margin-bottom: 1rem;
+  color: var(--kontrast);
+}
+
+.meditation-card p {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.meditation-card .button {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: var(--kontrast);
+  color: var(--text-hell);
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.meditation-card .button:hover {
+  background-color: #ff4d4d;
+}
+
+/* Single Card Page */
+/* Meditationsseite */
+.meditation-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background-color: var(--blau-dunkel);
+  padding: 2rem;
+}
+
+.meditation-card-large {
+  background-color: var(--graublau);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 90%;
+  text-align: center;
+  color: var(--text-hell);
+}
+
+.meditation-card-large h2 {
+  font-size: 2.2rem;
+  color: var(--kontrast);
+  margin-bottom: 0.5rem;
+}
+
+.meditation-card-large p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.meditation-audio-container {
+  margin-top: 1.5rem;
+}
+
+.meditation-audio-container audio {
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--blau-dunkel);
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
