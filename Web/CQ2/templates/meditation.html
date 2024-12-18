@@ -4,8 +4,15 @@
   <div class="meditation-card-large">
     <h2>{{ meditation.title }}</h2>
     <p>{{ meditation.description }}</p>
+
+    <!-- Audio-Player -->
     <div class="meditation-audio-container">
-      <audio controls>
+      <audio
+        id="audio-player"
+        controls
+        data-completed-url="{{ url_for('meditation_completed', meditation_id=meditation.id) }}"
+        data-csrf-token="{{ csrf_token() if csrf_token else '' }}"
+      >
         <source
           src="{{ url_for('static', filename=meditation.audio_file) }}"
           type="audio/mpeg"
@@ -15,4 +22,7 @@
     </div>
   </div>
 </main>
+
+<!-- Externes JavaScript für Flash-Nachrichten und Aktionen -->
+<script src="{{ url_for('static', filename='js/meditation.js') }}"></script>
 {% endblock %}

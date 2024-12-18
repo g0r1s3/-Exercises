@@ -206,6 +206,21 @@ def meditation(meditation_id):
     meditation = Meditation.query.get_or_404(meditation_id)
     return render_template("meditation.html", meditation=meditation)
 
+@app.route("/meditation_completed/<int:meditation_id>", methods=["POST"])
+@login_required
+def meditation_completed(meditation_id):
+    meditation = Meditation.query.get_or_404(meditation_id)
+    # Neuen Abschluss speichern
+    completed_meditation = CompletedMeditation(
+        user_id=current_user.id,
+        meditation_id=meditation_id
+    )
+    db.session.add(completed_meditation)
+    db.session.commit()
+    # Flash-Nachricht
+    flash("Meditation erfolgreich abgeschlossen!")
+    return "", 204  # Kein Inhalt zurückgeben, aber Anfrage war erfolgreich
+
 @app.route("/create_meditation", methods=["GET", "POST"])
 @login_required
 def create_meditation():
