@@ -22,9 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
         grid: { color: "rgba(255, 255, 255, 0.1)" },
       },
       y: {
-        ticks: { color: "#ffffff" }, // Heller Text für Y-Achse
+        ticks: {
+          color: "#ffffff", // Heller Text für Y-Achse
+          stepSize: 1, // Schrittgröße der Beschriftung
+          callback: function (value) {
+            // Nur Werte bis 10 anzeigen
+            return value <= 10 ? value : "";
+          },
+        },
         min: 0, // Y-Achse startet bei 0
-        max: 10, // Y-Achse endet bei 10
+        max: 10.5, // Platz oberhalb der 10 für die Punkte
         grid: { color: "rgba(255, 255, 255, 0.1)" },
       },
     },
@@ -44,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
           pointBackgroundColor: "#48cae4",
           pointRadius: 5,
           tension: 0.3,
+          fill: true,
         },
       ],
     },
@@ -64,6 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
           pointBackgroundColor: "#ff9f43",
           pointRadius: 5,
           tension: 0.3,
+          fill: true,
         },
       ],
     },
