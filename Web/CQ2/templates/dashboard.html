@@ -2,7 +2,6 @@
 content %}
 <main class="dashboard">
   <!-- Sektion 1: Persönliches Profil -->
-  <!-- Sektion 1: Persönliches Profil -->
   <section class="profile">
     <h2>Willkommen, {{ username }}!</h2>
     <div class="profile-info">
@@ -41,17 +40,59 @@ content %}
   <section class="achievements">
     <h2>Deine Achievements</h2>
     <div class="achievement-list">
-      {% for achievement in achievements %}
-      <div class="achievement">
-        <h3>{{ achievement.title }}</h3>
-        <p>{{ achievement.description }}</p>
-        <p>
-          <em>Erreicht am: {{ achievement.earned_at.strftime('%d.%m.%Y') }}</em>
-        </p>
+      <!-- Achievement: Holz -->
+      <div class="achievement" title="Holz - Schreibe 5 Tagebucheinträge">
+        <img
+          src="{{ url_for('static', filename='icons/achievements/book_wooden.svg') if journal_count >= 5 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+          alt="Achievement Holz"
+          class="achievement-icon"
+        />
       </div>
-      {% else %}
-      <p>Du hast noch keine Achievements erreicht.</p>
-      {% endfor %}
+
+      <!-- Achievement: Bronze -->
+      <div class="achievement" title="Bronze - Schreibe 20 Tagebucheinträge">
+        <img
+          src="{{ url_for('static', filename='icons/achievements/book_bronce.svg') if journal_count >= 20 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+          alt="Achievement Bronze"
+          class="achievement-icon"
+        />
+      </div>
+
+      <!-- Achievement: Silber -->
+      <div class="achievement" title="Silber - Schreibe 50 Tagebucheinträge">
+        <img
+          src="{{ url_for('static', filename='icons/achievements/book_silver.svg') if journal_count >= 50 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+          alt="Achievement Silber"
+          class="achievement-icon"
+        />
+      </div>
+
+      <!-- Achievement: Gold -->
+      <div class="achievement" title="Gold - Schreibe 100 Tagebucheinträge">
+        <img
+          src="{{ url_for('static', filename='icons/achievements/book_gold.svg') if journal_count >= 100 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+          alt="Achievement Gold"
+          class="achievement-icon"
+        />
+      </div>
+
+      <!-- Achievement: Platin -->
+      <div class="achievement" title="Platin - Schreibe 250 Tagebucheinträge">
+        <img
+          src="{{ url_for('static', filename='icons/achievements/book_platinum.svg') if journal_count >= 250 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+          alt="Achievement Platin"
+          class="achievement-icon"
+        />
+      </div>
+
+      <!-- Achievement: Diamant -->
+      <div class="achievement" title="Diamant - Schreibe 500 Tagebucheinträge">
+        <img
+          src="{{ url_for('static', filename='icons/achievements/book_diamond.svg') if journal_count >= 500 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+          alt="Achievement Diamant"
+          class="achievement-icon"
+        />
+      </div>
     </div>
   </section>
 </main>
