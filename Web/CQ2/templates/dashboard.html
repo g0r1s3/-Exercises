@@ -41,57 +41,117 @@ content %}
     <h2>Deine Achievements</h2>
     <div class="achievement-list">
       <!-- Achievement: Holz -->
-      <div class="achievement" title="Holz - Schreibe 5 Tagebucheinträge">
-        <img
-          src="{{ url_for('static', filename='icons/achievements/book_wooden.svg') if journal_count >= 5 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
-          alt="Achievement Holz"
-          class="achievement-icon"
-        />
-      </div>
+      <div class="achievement-list-row">
+        <div class="achievement" title="Holz - Schreibe 5 Tagebucheinträge">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/book_wooden.svg') if journal_count >= 5 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+            alt="Achievement Holz"
+            class="achievement-icon"
+          />
+        </div>
 
-      <!-- Achievement: Bronze -->
-      <div class="achievement" title="Bronze - Schreibe 20 Tagebucheinträge">
-        <img
-          src="{{ url_for('static', filename='icons/achievements/book_bronce.svg') if journal_count >= 20 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
-          alt="Achievement Bronze"
-          class="achievement-icon"
-        />
-      </div>
+        <!-- Achievement: Bronze -->
+        <div class="achievement" title="Bronze - Schreibe 20 Tagebucheinträge">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/book_bronce.svg') if journal_count >= 20 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+            alt="Achievement Bronze"
+            class="achievement-icon"
+          />
+        </div>
 
-      <!-- Achievement: Silber -->
-      <div class="achievement" title="Silber - Schreibe 50 Tagebucheinträge">
-        <img
-          src="{{ url_for('static', filename='icons/achievements/book_silver.svg') if journal_count >= 50 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
-          alt="Achievement Silber"
-          class="achievement-icon"
-        />
-      </div>
+        <!-- Achievement: Silber -->
+        <div class="achievement" title="Silber - Schreibe 50 Tagebucheinträge">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/book_silver.svg') if journal_count >= 50 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+            alt="Achievement Silber"
+            class="achievement-icon"
+          />
+        </div>
 
-      <!-- Achievement: Gold -->
-      <div class="achievement" title="Gold - Schreibe 100 Tagebucheinträge">
-        <img
-          src="{{ url_for('static', filename='icons/achievements/book_gold.svg') if journal_count >= 100 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
-          alt="Achievement Gold"
-          class="achievement-icon"
-        />
-      </div>
+        <!-- Achievement: Gold -->
+        <div class="achievement" title="Gold - Schreibe 100 Tagebucheinträge">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/book_gold.svg') if journal_count >= 100 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+            alt="Achievement Gold"
+            class="achievement-icon"
+          />
+        </div>
 
-      <!-- Achievement: Platin -->
-      <div class="achievement" title="Platin - Schreibe 250 Tagebucheinträge">
-        <img
-          src="{{ url_for('static', filename='icons/achievements/book_platinum.svg') if journal_count >= 250 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
-          alt="Achievement Platin"
-          class="achievement-icon"
-        />
-      </div>
+        <!-- Achievement: Platin -->
+        <div class="achievement" title="Platin - Schreibe 250 Tagebucheinträge">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/book_platinum.svg') if journal_count >= 250 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+            alt="Achievement Platin"
+            class="achievement-icon"
+          />
+        </div>
 
-      <!-- Achievement: Diamant -->
-      <div class="achievement" title="Diamant - Schreibe 500 Tagebucheinträge">
-        <img
-          src="{{ url_for('static', filename='icons/achievements/book_diamond.svg') if journal_count >= 500 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
-          alt="Achievement Diamant"
-          class="achievement-icon"
-        />
+        <!-- Achievement: Diamant -->
+        <div
+          class="achievement"
+          title="Diamant - Schreibe 500 Tagebucheinträge"
+        >
+          <img
+            src="{{ url_for('static', filename='icons/achievements/book_diamond.svg') if journal_count >= 500 else url_for('static', filename='icons/achievements/book_gray.svg') }}"
+            alt="Achievement Diamant"
+            class="achievement-icon"
+          />
+        </div>
+      </div>
+      <div class="achievement-list-row">
+        <!-- Achievement: Holz -->
+        <div class="achievement" title="Holz - Absolviere 5 Meditationen">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/lotus_wooden.svg') if meditation_count >= 5 else url_for('static', filename='icons/achievements/lotus_gray.svg') }}"
+            alt="Achievement Holz"
+            class="achievement-icon"
+          />
+        </div>
+
+        <!-- Achievement: Bronze -->
+        <div class="achievement" title="Bronze - Absolviere 20 Meditationen">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/lotus_bronce.svg') if meditation_count >= 20 else url_for('static', filename='icons/achievements/lotus_gray.svg') }}"
+            alt="Achievement Bronze"
+            class="achievement-icon"
+          />
+        </div>
+
+        <!-- Achievement: Silber -->
+        <div class="achievement" title="Silber - Absolviere 50 Meditationen">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/lotus_silver.svg') if meditation_count >= 50 else url_for('static', filename='icons/achievements/lotus_gray.svg') }}"
+            alt="Achievement Silber"
+            class="achievement-icon"
+          />
+        </div>
+
+        <!-- Achievement: Gold -->
+        <div class="achievement" title="Gold - Absolviere 100 Meditationen">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/lotus_gold.svg') if meditation_count >= 100 else url_for('static', filename='icons/achievements/lotus_gray.svg') }}"
+            alt="Achievement Gold"
+            class="achievement-icon"
+          />
+        </div>
+
+        <!-- Achievement: Platin -->
+        <div class="achievement" title="Platin - Absolviere 250 Meditationen">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/lotus_platinum.svg') if meditation_count >= 250 else url_for('static', filename='icons/achievements/lotus_gray.svg') }}"
+            alt="Achievement Platin"
+            class="achievement-icon"
+          />
+        </div>
+
+        <!-- Achievement: Diamant -->
+        <div class="achievement" title="Diamant - Absolviere 500 Meditationen">
+          <img
+            src="{{ url_for('static', filename='icons/achievements/lotus_diamond.svg') if meditation_count >= 500 else url_for('static', filename='icons/achievements/lotus_gray.svg') }}"
+            alt="Achievement Diamant"
+            class="achievement-icon"
+          />
+        </div>
       </div>
     </div>
   </section>

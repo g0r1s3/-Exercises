@@ -434,8 +434,13 @@ section h2 {
   background-color: #ff4d4d;
 }
 
+.achievements {
+  min-width: 50%;
+}
+
 .achievement-list {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   gap: 1rem;
   justify-content: center;
@@ -449,10 +454,19 @@ section h2 {
   width: 100px;
 }
 
+.achievement-list-row {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
 .achievement-icon {
   width: 80px;
   height: 80px;
   transition: transform 0.2s ease-in-out;
+  object-fit: contain;
 }
 
 .achievement-icon:hover {
