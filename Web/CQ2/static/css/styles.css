@@ -575,18 +575,3 @@ section h2 {
   padding: 0.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
-
-/* Charts */
-
-.charts {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-canvas {
-  max-width: 100%;
-  height: 400px;
-  margin: 0 auto;
-}
