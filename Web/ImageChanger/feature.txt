@@ -1,0 +1,14 @@
+Bild hochladen
+- Dateiauswahl
+- Drag & Drop
+
+Bild herunterladen (sobald Änderungen vorgenommen wurden)
+
+Änderungen
+- Helligkeit
+- Kontrast
+- Zuschneiden
+- Schwarz-Weiß-Filter
+- Spiegeln (vertikal + horizontal)
+- Text hinzufügen
+- Sticker hinzufügen
