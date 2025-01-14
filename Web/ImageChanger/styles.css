@@ -1,0 +1,16 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  margin: 20px;
+}
+#canvas {
+  border: 1px solid #ccc;
+  display: block;
+  margin: 20px auto;
+}
+#tools {
+  margin: 20px;
+}
+input[type="file"] {
+  margin-bottom: 10px;
+}
