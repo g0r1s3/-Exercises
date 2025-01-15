@@ -3,6 +3,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const grayscaleBtn = document.getElementById("grayscale");
 const flipHorizontalBtn = document.getElementById("flipHorizontal");
+const flipVerticalBtn = document.getElementById("flipVertical");
 const downloadBtn = document.getElementById("download");
 
 let img = new Image();
@@ -45,6 +46,19 @@ flipHorizontalBtn.addEventListener("click", () => {
   tempCanvas.height = canvas.height;
   tempCtx.scale(-1, 1);
   tempCtx.drawImage(canvas, -canvas.width, 0);
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(tempCanvas, 0, 0);
+});
+
+flipVerticalBtn.addEventListener("click", () => {
+  const tempCanvas = document.createElement("canvas");
+  const tempCtx = tempCanvas.getContext("2d");
+  tempCanvas.width = canvas.width;
+  tempCanvas.height = canvas.height;
+  tempCtx.translate(0, canvas.height);
+  tempCtx.scale(1, -1);
+  tempCtx.drawImage(canvas, 0, 0);
 
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.drawImage(tempCanvas, 0, 0);
