@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image Editor</title>
+    <title>ImageChanger</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Simple Image Editor</h1>
-    <input type="file" id="upload" accept="image/*" />
-    <canvas id="canvas"></canvas>
-    <div id="tools">
+    <div class="header">Header Leiste</div>
+    <div class="main-content">
+      <button id="undo" class="side-button">Undo</button>
+      <div class="image-area">
+        <input type="file" id="upload" accept="image/*" />
+        <canvas id="canvas"></canvas>
+      </div>
+      <button id="redo" class="side-button">Redo</button>
+    </div>
+    <div class="feature-bar">
       <button id="flipVertical">Flip Vertical</button>
-      <button id="grayscale">Grayscale</button>
       <button id="flipHorizontal">Flip Horizontal</button>
+      <button id="grayscale">Grayscale</button>
+      <button id="rotate">Rotate 90°</button>
       <button id="download">Download</button>
     </div>
+    <div class="footer">Footer Leiste</div>
     <script src="app.js"></script>
   </body>
 </html>
