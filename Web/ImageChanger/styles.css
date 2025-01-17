@@ -1,30 +1,53 @@
+:root {
+  --primary-color: #282c34; /* Dunkles Grau für Header, Footer und Buttons */
+  --secondary-color: #61dafb; /* Helles Blau für Akzente */
+  --background-color: #f4f4f4; /* Helles Grau für Hintergrund */
+  --text-color: #ffffff; /* Weiß für Text */
+  --button-hover-color: #4caf50; /* Grün für Button-Hover-Effekt */
+  --canvas-border-color: #888888; /* Neutrales Grau für Canvas-Rahmen */
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif; /* Moderner Font */
   display: flex;
   flex-direction: column;
   height: 100vh;
   text-align: center;
-}
-
-.header,
-.footer,
-.feature-bar {
-  background-color: #e0e0e0;
-  padding: 10px 0;
-  text-align: center;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 .header,
 .footer {
-  flex: 0 0 10%;
+  background-color: var(--primary-color);
+  padding: 10px 0;
+  text-align: center;
+  color: var(--text-color);
 }
 
 .feature-bar {
+  background-color: var(--primary-color);
   flex: 0 0 15%;
   display: flex;
   justify-content: center;
   gap: 10px;
+  padding: 10px 0;
+}
+
+.feature-bar button {
+  background-color: var(--secondary-color);
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.feature-bar button:hover {
+  background-color: var(--button-hover-color);
 }
 
 .main-content {
@@ -33,7 +56,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: #f9f9f9;
+  background-color: var(--background-color);
 }
 
 .image-area {
@@ -44,8 +67,9 @@ body {
 }
 
 canvas {
-  border: 1px solid #ccc;
+  border: 1px solid var(--canvas-border-color);
   margin: 10px 0;
+  border-radius: 5px;
 }
 
 input[type="file"] {
@@ -53,13 +77,21 @@ input[type="file"] {
 }
 
 .side-button {
-  background-color: #ccc;
+  background-color: var(--primary-color);
   border: none;
   padding: 10px 20px;
   cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  color: var(--text-color);
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.side-button:hover {
+  background-color: var(--button-hover-color);
 }
 
 #undo {
