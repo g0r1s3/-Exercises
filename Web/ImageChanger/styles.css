@@ -79,6 +79,12 @@ canvas {
   border-radius: 5px;
 }
 
+#canvas.drag-over {
+  border: 2px dashed #3498db;
+  background-color: rgba(52, 152, 219, 0.1);
+  cursor: copy;
+}
+
 input[type="file"] {
   margin: 10px 0;
   padding: var(--button-padding);

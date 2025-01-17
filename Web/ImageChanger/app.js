@@ -13,6 +13,7 @@ let img = new Image();
 let history = [];
 let historyIndex = -1;
 let rotationAngle = 0;
+let imageLoaded = false; // Zustand: Ob ein Bild geladen wurde
 
 function saveState() {
   if (historyIndex < history.length - 1) {
@@ -33,17 +34,53 @@ function restoreState() {
   }
 }
 
+// Drag-and-Drop-Funktionalität
+canvas.addEventListener("dragover", (event) => {
+  if (!imageLoaded) {
+    event.preventDefault();
+    canvas.classList.add("drag-over");
+  }
+});
+
+canvas.addEventListener("dragleave", () => {
+  canvas.classList.remove("drag-over");
+});
+
+canvas.addEventListener("drop", (event) => {
+  if (!imageLoaded) {
+    event.preventDefault();
+    canvas.classList.remove("drag-over");
+
+    const file = event.dataTransfer.files[0];
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        img.src = reader.result;
+        imageLoaded = true; // Zustand setzen
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvas leeren
+      };
+      reader.readAsDataURL(file);
+    } else {
+      alert("Bitte eine Bilddatei ziehen!");
+    }
+  }
+});
+
+// Datei-Upload via Button
 upload.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = () => {
       img.src = reader.result;
+      imageLoaded = true; // Zustand setzen
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvas leeren
     };
     reader.readAsDataURL(file);
   }
 });
 
+// Bild ins Canvas zeichnen
 img.onload = () => {
   canvas.width = img.width;
   canvas.height = img.height;
@@ -51,25 +88,42 @@ img.onload = () => {
   saveState();
 };
 
-rotateBtn.addEventListener("click", () => {
-  rotationAngle = (rotationAngle + 90) % 360;
-
-  const tempCanvas = document.createElement("canvas");
-  const tempCtx = tempCanvas.getContext("2d");
-
-  tempCanvas.width = canvas.height;
-  tempCanvas.height = canvas.width;
-
-  tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
-  tempCtx.rotate((Math.PI / 180) * 90); // 90 degrees in radians
-  tempCtx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
-
-  canvas.width = tempCanvas.width;
-  canvas.height = tempCanvas.height;
+// Nachricht "Bild hierher ziehen"
+function drawDragAndDropMessage() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.drawImage(tempCanvas, 0, 0);
+  ctx.font = "20px Arial";
+  ctx.fillStyle = "#555";
+  ctx.textAlign = "center";
+  ctx.fillText("Bild hierher ziehen", canvas.width / 2, canvas.height / 2);
+}
 
-  saveState();
+// Initiale Nachricht anzeigen
+if (!imageLoaded) {
+  drawDragAndDropMessage();
+}
+
+// Rotate-Funktion
+rotateBtn.addEventListener("click", () => {
+  if (imageLoaded) {
+    rotationAngle = (rotationAngle + 90) % 360;
+
+    const tempCanvas = document.createElement("canvas");
+    const tempCtx = tempCanvas.getContext("2d");
+
+    tempCanvas.width = canvas.height;
+    tempCanvas.height = canvas.width;
+
+    tempCtx.translate(tempCanvas.width / 2, tempCanvas.height / 2);
+    tempCtx.rotate((Math.PI / 180) * 90); // 90 degrees in radians
+    tempCtx.drawImage(canvas, -canvas.width / 2, -canvas.height / 2);
+
+    canvas.width = tempCanvas.width;
+    canvas.height = tempCanvas.height;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(tempCanvas, 0, 0);
+
+    saveState();
+  }
 });
 
 grayscaleBtn.addEventListener("click", () => {
