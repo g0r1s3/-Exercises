@@ -1,15 +1,19 @@
 :root {
-  --primary-color: #282c34; /* Dunkles Grau für Header, Footer und Buttons */
-  --secondary-color: #61dafb; /* Helles Blau für Akzente */
-  --background-color: #f4f4f4; /* Helles Grau für Hintergrund */
-  --text-color: #ffffff; /* Weiß für Text */
-  --button-hover-color: #4caf50; /* Grün für Button-Hover-Effekt */
-  --canvas-border-color: #888888; /* Neutrales Grau für Canvas-Rahmen */
+  --primary-color: #282c34;
+  --secondary-color: #61dafb;
+  --background-color: #f4f4f4;
+  --text-color: #ffffff;
+  --button-hover-color: #4caf50;
+  --canvas-border-color: #888888;
+  --button-border-radius: 5px;
+  --button-padding: 8px 12px;
+  --button-font-size: 0.9rem;
+  --button-animation-duration: 0.2s;
 }
 
 body {
   margin: 0;
-  font-family: "Roboto", Arial, sans-serif; /* Moderner Font */
+  font-family: "Roboto", Arial, sans-serif;
   display: flex;
   flex-direction: column;
   height: 100vh;
@@ -26,9 +30,12 @@ body {
   color: var(--text-color);
 }
 
+.footer {
+  margin-top: auto; /* Footer bleibt immer am Seitenende */
+}
+
 .feature-bar {
   background-color: var(--primary-color);
-  flex: 0 0 15%;
   display: flex;
   justify-content: center;
   gap: 10px;
@@ -38,12 +45,17 @@ body {
 .feature-bar button {
   background-color: var(--secondary-color);
   border: none;
-  padding: 10px 15px;
+  padding: var(--button-padding);
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
   color: var(--text-color);
-  transition: background-color 0.3s ease;
+  transition: background-color var(--button-animation-duration);
+  height: 40px; /* Kleinere Buttons */
+  width: 90px; /* Einheitliche Breite */
+  white-space: nowrap; /* Kein Zeilenumbruch innerhalb des Buttons */
+  overflow: hidden; /* Verhindert, dass Text über die Grenzen hinausgeht */
+  text-overflow: ellipsis; /* Setzt "..." bei zu langem Text */
 }
 
 .feature-bar button:hover {
@@ -56,7 +68,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
-  background-color: var(--background-color);
+  padding: 10px;
 }
 
 .image-area {
@@ -74,20 +86,45 @@ canvas {
 
 input[type="file"] {
   margin: 10px 0;
+  padding: var(--button-padding);
+  font-size: var(--button-font-size);
+  color: var(--primary-color);
+  background-color: var(--background-color);
+  cursor: pointer;
+  border: 1px solid var(--canvas-border-color);
+  border-radius: var(--button-border-radius);
+  text-align: center;
+}
+
+input[type="file"]::file-selector-button {
+  background-color: var(--secondary-color);
+  border: none;
+  padding: var(--button-padding);
+  color: var(--text-color);
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
+  cursor: pointer;
+  transition: background-color var(--button-animation-duration);
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: var(--button-hover-color);
 }
 
 .side-button {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   border: none;
-  padding: 10px 20px;
+  padding: var(--button-padding);
   cursor: pointer;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-color);
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
+  border-radius: var(--button-border-radius);
+  font-size: var(--button-font-size);
+  transition: background-color var(--button-animation-duration);
+  height: 40px;
+  width: 60px;
 }
 
 .side-button:hover {
@@ -95,9 +132,19 @@ input[type="file"] {
 }
 
 #undo {
-  left: 10px;
+  left: 20px; /* Korrekte Positionierung */
 }
 
 #redo {
-  right: 10px;
+  right: 20px; /* Korrekte Positionierung */
+}
+
+button:active,
+input[type="file"]:active {
+  transform: scale(0.98); /* Minimales Eindrücken beim Klick */
+}
+
+button,
+input[type="file"] {
+  box-sizing: border-box; /* Verhindert Größenänderung bei Padding */
 }
