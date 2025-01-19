@@ -22,18 +22,58 @@ body {
   color: var(--text-color);
 }
 
-.header,
+.header {
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  color: var(--text-color);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nav-bar {
+  display: flex;
+  gap: 15px;
+}
+
+.nav-bar a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color var(--button-animation-duration);
+}
+
+.nav-bar a:hover {
+  color: var(--secondary-color);
+}
+
 .footer {
   background-color: var(--primary-color);
-  padding: 10px 0;
-  text-align: center;
+  padding: 15px 20px;
   color: var(--text-color);
+  text-align: center;
+  font-size: 0.9rem;
 }
 
-.footer {
-  margin-top: auto; /* Footer bleibt immer am Seitenende */
+.footer-content p {
+  margin: 5px 0;
 }
 
+.footer-content a {
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color var(--button-animation-duration);
+}
+
+.footer-content a:hover {
+  color: var(--button-hover-color);
+}
 .feature-bar {
   background-color: var(--primary-color);
   display: flex;
