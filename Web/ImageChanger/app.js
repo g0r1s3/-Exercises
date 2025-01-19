@@ -8,12 +8,50 @@ const downloadBtn = document.getElementById("download");
 const undoBtn = document.getElementById("undo");
 const redoBtn = document.getElementById("redo");
 const rotateBtn = document.getElementById("rotate");
+const addTextFeatureBtn = document.getElementById("addTextFeature");
+const textModal = document.getElementById("textModal");
+const modalTextInput = document.getElementById("modalTextInput");
+const applyTextBtn = document.getElementById("applyText");
+const closeModalBtn = document.getElementById("closeModal");
+const positionSelect = document.getElementById("positionSelect");
+const fontSizeInput = document.getElementById("fontSize");
+const fontWeightSelect = document.getElementById("fontWeight");
 
 let img = new Image();
 let history = [];
 let historyIndex = -1;
 let rotationAngle = 0;
 let imageLoaded = false; // Zustand: Ob ein Bild geladen wurde
+
+function getTextPosition(
+  position,
+  canvasWidth,
+  canvasHeight,
+  textWidth,
+  textHeight
+) {
+  switch (position) {
+    case "top-left":
+      return { x: 10, y: textHeight + 10 };
+    case "top-center":
+      return { x: canvasWidth / 2 - textWidth / 2, y: textHeight + 10 };
+    case "top-right":
+      return { x: canvasWidth - textWidth - 10, y: textHeight + 10 };
+    case "center":
+      return {
+        x: canvasWidth / 2 - textWidth / 2,
+        y: canvasHeight / 2 + textHeight / 2,
+      };
+    case "bottom-left":
+      return { x: 10, y: canvasHeight - 10 };
+    case "bottom-center":
+      return { x: canvasWidth / 2 - textWidth / 2, y: canvasHeight - 10 };
+    case "bottom-right":
+      return { x: canvasWidth - textWidth - 10, y: canvasHeight - 10 };
+    default:
+      return { x: 10, y: 10 }; // Default position
+  }
+}
 
 function saveState() {
   if (historyIndex < history.length - 1) {
@@ -87,6 +125,52 @@ img.onload = () => {
   ctx.drawImage(img, 0, 0);
   saveState();
 };
+
+addTextFeatureBtn.addEventListener("click", () => {
+  textModal.classList.remove("hidden");
+});
+
+applyTextBtn.addEventListener("click", () => {
+  const text = modalTextInput.value.trim();
+  const font = fontSelect.value;
+  const fontSize = fontSizeInput.value;
+  const fontWeight = fontWeightSelect.value;
+  const color = colorPicker.value;
+  const position = positionSelect.value;
+
+  if (text && imageLoaded) {
+    ctx.font = `${fontWeight} ${fontSize}px ${font}`;
+    ctx.fillStyle = color;
+    ctx.strokeStyle = "black";
+    ctx.lineWidth = 2;
+
+    const textMetrics = ctx.measureText(text);
+    const textWidth = textMetrics.width;
+    const textHeight = parseInt(fontSize, 10); // Approximate height of the text
+    const { x, y } = getTextPosition(
+      position,
+      canvas.width,
+      canvas.height,
+      textWidth,
+      textHeight
+    );
+
+    // Draw text at the calculated position
+    ctx.strokeText(text, x, y);
+    ctx.fillText(text, x, y);
+
+    saveState(); // Save the state
+    textModal.classList.add("hidden");
+    modalTextInput.value = ""; // Clear the input
+  } else {
+    alert("Please load an image and enter valid text!");
+  }
+});
+
+closeModalBtn.addEventListener("click", () => {
+  textModal.classList.add("hidden");
+  modalTextInput.value = ""; // Clear the input
+});
 
 // Nachricht "Bild hierher ziehen"
 function drawDragAndDropMessage() {

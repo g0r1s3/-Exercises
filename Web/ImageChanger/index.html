@@ -28,6 +28,7 @@
       <button id="flipHorizontal">Flip Horizontal</button>
       <button id="grayscale">Grayscale</button>
       <button id="rotate">Rotate 90°</button>
+      <button id="addTextFeature">Add Text</button>
       <button id="download">Download</button>
     </div>
     <div class="footer">
@@ -37,6 +38,80 @@
           <a href="#privacy">Privacy Policy</a> |
           <a href="#terms">Terms of Service</a>
         </p>
+      </div>
+    </div>
+    <div id="textModal" class="modal hidden">
+      <div class="modal-content">
+        <!-- Text Input -->
+        <input
+          type="text"
+          id="modalTextInput"
+          placeholder="Enter your text here"
+        />
+
+        <!-- Font Selection -->
+        <div class="form-group">
+          <label for="fontSelect">Font:</label>
+          <select id="fontSelect">
+            <option value="Arial">Arial</option>
+            <option value="Verdana">Verdana</option>
+            <option value="Courier New">Courier New</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Times New Roman">Times New Roman</option>
+          </select>
+        </div>
+
+        <!-- Font Size -->
+        <div class="form-group">
+          <label for="fontSize">Font Size (px):</label>
+          <input type="number" id="fontSize" min="10" max="100" value="30" />
+        </div>
+
+        <!-- Font Weight -->
+        <div class="form-group">
+          <label for="fontWeight">Font Weight:</label>
+          <select id="fontWeight">
+            <option value="normal">Normal</option>
+            <option value="bold">Bold</option>
+            <option value="bolder">Bolder</option>
+            <option value="lighter">Lighter</option>
+            <option value="100">100</option>
+            <option value="200">200</option>
+            <option value="300">300</option>
+            <option value="400">400</option>
+            <option value="500">500</option>
+            <option value="600">600</option>
+            <option value="700">700</option>
+            <option value="800">800</option>
+            <option value="900">900</option>
+          </select>
+        </div>
+
+        <!-- Color Picker -->
+        <div class="form-group">
+          <label for="colorPicker">Color:</label>
+          <input type="color" id="colorPicker" value="#ffffff" />
+        </div>
+
+        <!-- Position Selection -->
+        <div class="form-group">
+          <label for="positionSelect">Position:</label>
+          <select id="positionSelect">
+            <option value="top-left">Top Left</option>
+            <option value="top-center">Top Center</option>
+            <option value="top-right">Top Right</option>
+            <option value="center">Center</option>
+            <option value="bottom-left">Bottom Left</option>
+            <option value="bottom-center">Bottom Center</option>
+            <option value="bottom-right">Bottom Right</option>
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div class="button-group">
+          <button id="applyText" class="side-button">Apply Text</button>
+          <button id="closeModal" class="side-button">Cancel</button>
+        </div>
       </div>
     </div>
     <script src="app.js"></script>
