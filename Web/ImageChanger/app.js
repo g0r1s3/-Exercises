@@ -16,6 +16,8 @@ const closeModalBtn = document.getElementById("closeModal");
 const positionSelect = document.getElementById("positionSelect");
 const fontSizeInput = document.getElementById("fontSize");
 const fontWeightSelect = document.getElementById("fontWeight");
+const featureButtons = document.querySelectorAll(".feature-bar button");
+const fileInput = document.getElementById("upload");
 // Elemente für die Farbauswahl-Funktionalität
 const pickColorBtn = document.getElementById("pickColor"); // Button, um das Farbauswahl-Tool zu aktivieren
 const colorModal = document.getElementById("colorModal"); // Modal, um die Farbinformationen anzuzeigen
@@ -65,6 +67,12 @@ function getTextPosition(
     default:
       return { x: 10, y: 10 }; // Default position
   }
+}
+
+function setButtonsState(enabled) {
+  featureButtons.forEach((button) => {
+    button.disabled = !enabled;
+  });
 }
 
 function saveState() {
@@ -184,6 +192,23 @@ img.onload = () => {
   ctx.drawImage(img, 0, 0);
   saveState();
 };
+
+fileInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const img = new Image();
+    img.onload = () => {
+      // Bild in das Canvas zeichnen
+      canvas.width = img.width;
+      canvas.height = img.height;
+      ctx.drawImage(img, 0, 0);
+
+      // Buttons aktivieren
+      setButtonsState(true);
+    };
+    img.src = URL.createObjectURL(file);
+  }
+});
 
 addTextFeatureBtn.addEventListener("click", () => {
   textModal.classList.remove("hidden");

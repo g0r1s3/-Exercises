@@ -119,6 +119,13 @@ canvas {
   border-radius: 5px;
 }
 
+button:disabled {
+  opacity: 0.5; /* Macht den Button transparenter */
+  cursor: not-allowed; /* Zeigt an, dass der Button nicht nutzbar ist */
+  background-color: #ccc; /* Grauer Hintergrund */
+  color: #666; /* Blassere Textfarbe */
+}
+
 #canvas.drag-over {
   border: 2px dashed #3498db;
   background-color: rgba(52, 152, 219, 0.1);
