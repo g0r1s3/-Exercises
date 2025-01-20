@@ -202,6 +202,10 @@ input[type="file"] {
   z-index: 1000;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .modal.hidden {
   display: none;
 }
@@ -261,4 +265,41 @@ input[type="file"] {
 
 #applyText:hover {
   background-color: var(--button-hover-color); /* Hover-Farbe für Apply */
+}
+
+/* Color output Feature */
+
+#colorPreview {
+  width: 50px;
+  height: 50px;
+  background-color: #ffffff;
+  border: 1px solid var(--canvas-border-color);
+  margin-bottom: 10px;
+  border-radius: var(--button-border-radius);
+}
+
+.modal-content p {
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+#colorModal .button-group {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#colorModal button {
+  padding: 10px 15px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: var(--button-border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#colorModal button:hover {
+  background-color: var(--primary-color);
 }

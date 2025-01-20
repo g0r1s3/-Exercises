@@ -16,12 +16,26 @@ const closeModalBtn = document.getElementById("closeModal");
 const positionSelect = document.getElementById("positionSelect");
 const fontSizeInput = document.getElementById("fontSize");
 const fontWeightSelect = document.getElementById("fontWeight");
+// Elemente für die Farbauswahl-Funktionalität
+const pickColorBtn = document.getElementById("pickColor"); // Button, um das Farbauswahl-Tool zu aktivieren
+const colorModal = document.getElementById("colorModal"); // Modal, um die Farbinformationen anzuzeigen
+const colorPreview = document.getElementById("colorPreview"); // Vorschau der ausgewählten Farbe
+const rgbValue = document.getElementById("rgbValue"); // Element zur Anzeige des RGB-Werts
+const hexValue = document.getElementById("hexValue"); // Element zur Anzeige des HEX-Werts
+const copyRGBBtn = document.getElementById("copyRGB"); // Button zum Kopieren des RGB-Werts
+const copyHEXBtn = document.getElementById("copyHEX"); // Button zum Kopieren des HEX-Werts
+const closeColorModalBtn = document.getElementById("closeColorModal"); // Button, um das Modal zu schließen
 
 let img = new Image();
+let pickingColor = false;
 let history = [];
 let historyIndex = -1;
 let rotationAngle = 0;
 let imageLoaded = false; // Zustand: Ob ein Bild geladen wurde
+
+function rgbToHex(r, g, b) {
+  return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`;
+}
 
 function getTextPosition(
   position,
@@ -71,6 +85,51 @@ function restoreState() {
     };
   }
 }
+
+// Cursor ändern, um den Farbauswahlmodus anzuzeigen
+pickColorBtn.addEventListener("click", () => {
+  pickingColor = true;
+  canvas.style.cursor = "crosshair"; // Zeigt an, dass Farbe ausgewählt wird
+});
+
+// Farbauswahl bei Klick
+canvas.addEventListener("click", (e) => {
+  if (pickingColor) {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const imageData = ctx.getImageData(x, y, 1, 1).data;
+
+    const r = imageData[0];
+    const g = imageData[1];
+    const b = imageData[2];
+    const hex = rgbToHex(r, g, b);
+
+    // Farbinformationen aktualisieren
+    colorPreview.style.backgroundColor = hex;
+    rgbValue.textContent = `rgb(${r}, ${g}, ${b})`;
+    hexValue.textContent = hex;
+
+    // Modal anzeigen
+    colorModal.classList.remove("hidden");
+    pickingColor = false;
+    canvas.style.cursor = "default"; // Cursor zurücksetzen
+  }
+});
+
+// Kopieren von RGB und HEX
+copyRGBBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(rgbValue.textContent);
+});
+
+copyHEXBtn.addEventListener("click", () => {
+  navigator.clipboard.writeText(hexValue.textContent);
+});
+
+// Modal schließen
+closeColorModalBtn.addEventListener("click", () => {
+  colorModal.classList.add("hidden");
+});
 
 // Drag-and-Drop-Funktionalität
 canvas.addEventListener("dragover", (event) => {

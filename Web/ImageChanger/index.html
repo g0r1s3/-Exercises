@@ -29,6 +29,7 @@
       <button id="grayscale">Grayscale</button>
       <button id="rotate">Rotate 90°</button>
       <button id="addTextFeature">Add Text</button>
+      <button id="pickColor">Pick Color</button>
       <button id="download">Download</button>
     </div>
     <div class="footer">
@@ -111,6 +112,22 @@
         <div class="button-group">
           <button id="applyText" class="side-button">Apply Text</button>
           <button id="closeModal" class="side-button">Cancel</button>
+        </div>
+      </div>
+    </div>
+    <!-- Color Picker Output -->
+    <div id="colorModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Picked Color</h3>
+        <div id="colorPreview"></div>
+        <p>
+          RGB: <span id="rgbValue"></span> <button id="copyRGB">Copy</button>
+        </p>
+        <p>
+          HEX: <span id="hexValue"></span> <button id="copyHEX">Copy</button>
+        </p>
+        <div class="button-group">
+          <button id="closeColorModal">Close</button>
         </div>
       </div>
     </div>
