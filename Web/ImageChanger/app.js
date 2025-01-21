@@ -27,7 +27,12 @@ const hexValue = document.getElementById("hexValue"); // Element zur Anzeige des
 const copyRGBBtn = document.getElementById("copyRGB"); // Button zum Kopieren des RGB-Werts
 const copyHEXBtn = document.getElementById("copyHEX"); // Button zum Kopieren des HEX-Werts
 const closeColorModalBtn = document.getElementById("closeColorModal"); // Button, um das Modal zu schließen
+// Neuer Button für den Vorher-Nachher-Vergleich
+const compareImagesBtn = document.getElementById("compareImages"); // Button
+const compareModal = document.getElementById("compareModal"); // Modal
+const closeCompareModalBtn = document.getElementById("closeCompareModal"); // Modal schließen
 
+let originalImageSrc = null;
 let img = new Image();
 let pickingColor = false;
 let history = [];
@@ -171,18 +176,19 @@ canvas.addEventListener("drop", (event) => {
   }
 });
 
-// Datei-Upload via Button
 upload.addEventListener("change", (event) => {
   const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
     reader.onload = () => {
-      img.src = reader.result;
+      originalImageSrc = reader.result; // Originalbild speichern
+      img.src = originalImageSrc;
       imageLoaded = true; // Zustand setzen
-      ctx.clearRect(0, 0, canvas.width, canvas.height); // Canvas leeren
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     };
     reader.readAsDataURL(file);
   }
+  compareImagesBtn.disabled = false; // Button aktivieren
 });
 
 // Bild ins Canvas zeichnen
@@ -355,4 +361,33 @@ downloadBtn.addEventListener("click", () => {
   link.download = "edited-image.png";
   link.href = canvas.toDataURL();
   link.click();
+});
+
+// Vorher-Nachher-Vergleich anzeigen
+compareImagesBtn.addEventListener("click", () => {
+  if (!originalImageSrc || !imageLoaded) {
+    alert("Bitte zuerst ein Bild hochladen!");
+    return;
+  }
+
+  const originalImage = document.getElementById("originalImage");
+  const editedCanvas = document.getElementById("editedCanvas");
+  const currentCanvas = document.getElementById("canvas");
+
+  // Originalbild laden
+  originalImage.src = originalImageSrc;
+
+  // Bearbeitetes Bild kopieren
+  const context = editedCanvas.getContext("2d");
+  editedCanvas.width = currentCanvas.width;
+  editedCanvas.height = currentCanvas.height;
+  context.drawImage(currentCanvas, 0, 0);
+
+  // Modal anzeigen
+  compareModal.classList.remove("hidden");
+});
+
+// Modal schließen
+closeCompareModalBtn.addEventListener("click", () => {
+  compareModal.classList.add("hidden");
 });

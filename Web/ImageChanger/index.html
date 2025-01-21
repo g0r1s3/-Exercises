@@ -30,6 +30,7 @@
       <button id="rotate" disabled>Rotate 90°</button>
       <button id="addTextFeature" disabled>Add Text</button>
       <button id="pickColor" disabled>Pick Color</button>
+      <button id="compareImages" disabled>before/after</button>
       <button id="download" disabled>Download</button>
     </div>
     <div class="footer">
@@ -128,6 +129,24 @@
         </p>
         <div class="button-group">
           <button id="closeColorModal">Close</button>
+        </div>
+      </div>
+    </div>
+    <div id="compareModal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Before and After</h3>
+        <div class="compare-container">
+          <div>
+            <h4>Original Image</h4>
+            <img id="originalImage" alt="Original" />
+          </div>
+          <div>
+            <h4>Edited Image</h4>
+            <canvas id="editedCanvas"></canvas>
+          </div>
+        </div>
+        <div class="button-group">
+          <button id="closeCompareModal">Close</button>
         </div>
       </div>
     </div>
