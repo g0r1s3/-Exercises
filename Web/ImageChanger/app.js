@@ -373,21 +373,65 @@ compareImagesBtn.addEventListener("click", () => {
   const originalImage = document.getElementById("originalImage");
   const editedCanvas = document.getElementById("editedCanvas");
   const currentCanvas = document.getElementById("canvas");
+  const compareModal = document.getElementById("compareModal");
+  const closeCompareModalBtn = document.getElementById("closeCompareModalBtn");
 
-  // Originalbild laden
-  originalImage.src = originalImageSrc;
+  // Ensure elements exist
+  if (
+    originalImage &&
+    editedCanvas &&
+    currentCanvas &&
+    compareModal &&
+    closeCompareModalBtn
+  ) {
+    // Load original image
+    originalImage.src = originalImageSrc;
 
-  // Bearbeitetes Bild kopieren
-  const context = editedCanvas.getContext("2d");
-  editedCanvas.width = currentCanvas.width;
-  editedCanvas.height = currentCanvas.height;
-  context.drawImage(currentCanvas, 0, 0);
+    // Copy edited image
+    const context = editedCanvas.getContext("2d");
+    editedCanvas.width = currentCanvas.width;
+    editedCanvas.height = currentCanvas.height;
+    context.drawImage(currentCanvas, 0, 0);
 
-  // Modal anzeigen
-  compareModal.classList.remove("hidden");
+    // Show modal
+    compareModal.classList.remove("hidden");
+
+    // Close modal
+    closeCompareModalBtn.addEventListener("click", () => {
+      compareModal.classList.add("hidden");
+    });
+  } else {
+    console.error("One or more elements are missing.");
+  }
 });
 
-// Modal schließen
-closeCompareModalBtn.addEventListener("click", () => {
-  compareModal.classList.add("hidden");
+// Get the invert colors button
+const invertColorsButton = document.getElementById("invertColors");
+
+// Add event listener for the invert colors button
+invertColorsButton.addEventListener("click", () => {
+  const context = canvas.getContext("2d");
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+
+  // Invert colors
+  for (let i = 0; i < data.length; i += 4) {
+    data[i] = 255 - data[i]; // Red
+    data[i + 1] = 255 - data[i + 1]; // Green
+    data[i + 2] = 255 - data[i + 2]; // Blue
+  }
+
+  // Put the modified image data back on the canvas
+  context.putImageData(imageData, 0, 0);
+
+  // Save the state
+  saveState();
 });
+
+// Ensure the invert colors button is enabled when appropriate
+function setButtonsState(enabled) {
+  featureButtons.forEach((button) => {
+    button.disabled = !enabled;
+  });
+  invertColorsButton.disabled = !enabled;
+}
