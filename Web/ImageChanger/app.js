@@ -435,3 +435,65 @@ function setButtonsState(enabled) {
   });
   invertColorsButton.disabled = !enabled;
 }
+
+// Add functionality to the blur button from index.html
+const blurButton = document.getElementById("blur");
+
+// Add event listener for the blur button
+blurButton.addEventListener("click", () => {
+  const context = canvas.getContext("2d");
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+
+  // Apply a simple box blur with a smaller kernel
+  const weights = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+  const side = Math.round(Math.sqrt(weights.length));
+  const halfSide = Math.floor(side / 2);
+  const src = data;
+  const sw = canvas.width;
+  const sh = canvas.height;
+  const w = sw;
+  const h = sh;
+  const output = context.createImageData(w, h);
+  const dst = output.data;
+  const alphaFac = 1 / 9; // Normalize the weights
+  let r, g, b, a, cx, cy, scy, scx, srcOff, wt, i, j;
+
+  for (let y = 0; y < h; y++) {
+    for (let x = 0; x < w; x++) {
+      r = 0;
+      g = 0;
+      b = 0;
+      a = 0;
+
+      for (let cy = 0; cy < side; cy++) {
+        for (let cx = 0; cx < side; cx++) {
+          scy = y + cy - halfSide;
+          scx = x + cx - halfSide;
+
+          if (scy >= 0 && scy < sh && scx >= 0 && scx < sw) {
+            srcOff = (scy * sw + scx) * 4;
+            wt = weights[cy * side + cx];
+
+            r += src[srcOff] * wt;
+            g += src[srcOff + 1] * wt;
+            b += src[srcOff + 2] * wt;
+            a += src[srcOff + 3] * wt;
+          }
+        }
+      }
+
+      dstOff = (y * w + x) * 4;
+      dst[dstOff] = r * alphaFac;
+      dst[dstOff + 1] = g * alphaFac;
+      dst[dstOff + 2] = b * alphaFac;
+      dst[dstOff + 3] = a * alphaFac + alphaFac * (255 - a);
+    }
+  }
+
+  // Put the modified image data back on the canvas
+  context.putImageData(output, 0, 0);
+
+  // Save the state
+  saveState();
+});
