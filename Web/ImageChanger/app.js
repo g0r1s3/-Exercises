@@ -497,3 +497,30 @@ blurButton.addEventListener("click", () => {
   // Save the state
   saveState();
 });
+
+// Add functionality to the sepia button from index.html
+const sepiaButton = document.getElementById("sepia");
+
+// Add event listener for the sepia button
+sepiaButton.addEventListener("click", () => {
+  const context = canvas.getContext("2d");
+  const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+  const data = imageData.data;
+
+  // Apply a sepia filter
+  for (let i = 0; i < data.length; i += 4) {
+    const r = data[i];
+    const g = data[i + 1];
+    const b = data[i + 2];
+
+    data[i] = Math.min(255, r * 0.393 + g * 0.769 + b * 0.189);
+    data[i + 1] = Math.min(255, r * 0.349 + g * 0.686 + b * 0.168);
+    data[i + 2] = Math.min(255, r * 0.272 + g * 0.534 + b * 0.131);
+  }
+
+  // Put the modified image data back on the canvas
+  context.putImageData(imageData, 0, 0);
+
+  // Save the state
+  saveState();
+});
