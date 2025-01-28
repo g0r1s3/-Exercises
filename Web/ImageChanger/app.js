@@ -377,6 +377,13 @@ compareImagesBtn.addEventListener("click", () => {
   const closeCompareModalBtn = document.getElementById("closeCompareModalBtn");
 
   // Ensure elements exist
+  if (!originalImage) console.error("Element 'originalImage' is missing.");
+  if (!editedCanvas) console.error("Element 'editedCanvas' is missing.");
+  if (!currentCanvas) console.error("Element 'canvas' is missing.");
+  if (!compareModal) console.error("Element 'compareModal' is missing.");
+  if (!closeCompareModalBtn)
+    console.error("Element 'closeCompareModalBtn' is missing.");
+
   if (
     originalImage &&
     editedCanvas &&
