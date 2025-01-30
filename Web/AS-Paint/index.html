@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Paint App</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Create a Header with the following categories: Canvas, Tools, Forms, brush, Thickness, Color -->
+    <header>
+      <div class="header-item">
+        <h1>Canvas</h1>
+      </div>
+      <div class="header-item">
+        <h1>Tools</h1>
+      </div>
+      <div class="header-item">
+        <h1>Forms</h1>
+      </div>
+      <div class="header-item">
+        <h1>Brush</h1>
+      </div>
+
+      <div class="header-item header-item-thickness-container">
+        <div class="header-item-thickness">
+          <div class="thickness-option" data-height="2"></div>
+          <div class="thickness-option" data-height="4"></div>
+          <div class="thickness-option" data-height="6"></div>
+          <div class="thickness-option" data-height="8"></div>
+          <div class="thickness-option" data-height="10"></div>
+        </div>
+        <div class="header-item-title">Thickness</div>
+      </div>
+
+      <div class="vertical-line"></div>
+      <!-- Vertikale Trennlinie -->
+      <div class="header-item">
+        <div class="header-item-color">
+          <div class="header-item-color-current-previous">
+            <div
+              class="header-item-color-current"
+              style="background-color: black"
+            ></div>
+            <div
+              class="header-item-color-previous"
+              style="background-color: white"
+            ></div>
+          </div>
+          <div class="header-item-color-grid">
+            <!-- create a grid of colors like a palette of colors it should be 3x10 and the colors should be circles the user can pick -->
+            <div
+              class="header-item-color-circle"
+              style="background-color: red"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: blue"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: green"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: yellow"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: orange"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: purple"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: pink"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: brown"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: black"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: white"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: gray"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: cyan"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: magenta"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: lime"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: olive"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: navy"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: teal"
+            ></div>
+            <div
+              class="header-item-color-circle"
+              style="background-color: silver"
+            ></div>
+          </div>
+          <input type="color" class="header-item-color-picker" />
+        </div>
+        <div class="header-item-title">Color</div>
+      </div>
+      <div class="vertical-line"></div>
+      <div class="header-item">
+        <button id="downloadCanvas">Download Canvas</button>
+        <button id="shareCanvas">Share Canvas</button>
+      </div>
+    </header>
+    <main>
+      <canvas id="paintCanvas" width="1200" height="600"></canvas>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>

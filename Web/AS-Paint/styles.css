@@ -1,0 +1,191 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+header {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.vertical-line {
+  opacity: 0.2;
+  border-left: 2px solid #000; /* Farbe und Breite der Linie */
+  height: 100%; /* Höhe der Linie */
+  margin: 0 10px; /* Abstand zu den anderen Elementen */
+}
+
+.header-item-title {
+  text-align: center;
+  margin: 20px 0;
+  color: gray;
+}
+
+/* Thickness */
+
+.header-item-thickness-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-item-thickness {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.thickness-option {
+  width: 100px;
+  height: 2px; /* Default height */
+  background-color: #000;
+  cursor: pointer;
+  transition: transform 0.2s;
+  margin-bottom: 10px; /* Add space between the options */
+}
+
+.thickness-option[data-height="2"] {
+  height: 2px;
+}
+
+.thickness-option[data-height="4"] {
+  height: 4px;
+}
+
+.thickness-option[data-height="6"] {
+  height: 6px;
+}
+
+.thickness-option[data-height="8"] {
+  height: 8px;
+}
+
+.thickness-option[data-height="10"] {
+  height: 10px;
+}
+
+.thickness-option:hover {
+  background-color: #555;
+}
+
+.thickness-option:active {
+  transform: scale(0.95);
+}
+
+.thickness-option:hover {
+  background-color: #e0e0e0;
+}
+
+.thickness-option:active {
+  transform: scale(0.95);
+}
+
+/* Color */
+
+.header-item-color-current,
+.header-item-color-previous {
+  width: 40px; /* Increased size */
+  height: 40px; /* Increased size */
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  background-color: black;
+  display: block; /* Ensure they are block elements */
+  margin-bottom: 5px; /* Add space between the circles */
+}
+
+.header-item-color {
+  display: flex;
+  align-items: center;
+}
+
+.header-item-color-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px; /* Added padding for more space around the grid */
+}
+
+.header-item-color-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 5px;
+  border: 2px solid #ddd;
+}
+
+#toolbar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#toolbar button,
+#toolbar select,
+#toolbar input[type="color"] {
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+#toolbar button:hover,
+#toolbar select:hover,
+#toolbar input[type="color"]:hover {
+  background-color: #e0e0e0;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+#paintCanvas {
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Button stylings */
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
